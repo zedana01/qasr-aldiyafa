@@ -771,7 +771,7 @@
           <div class="card-panel-header">
             <div class="card-panel-title">
               <i class="fa-solid fa-file-pen" style="color:var(--primary);"></i>
-              <span>محرر وتعديل نصوص وصور الصفحات (الرئيسية، قصة الضيافة، اتصل بنا)</span>
+              <span>محرر وتعديل محتوى وصور كافة الصفحات (الرئيسية، المنيو، قصة الضيافة، الحجز، اتصل بنا)</span>
             </div>
             <button class="btn btn-primary btn-sm" onclick="saveAllPagesData()">
               <i class="fa-solid fa-floppy-disk"></i> حفظ كافة تعديلات الصفحات
@@ -781,13 +781,19 @@
           <!-- Page Selection Subtabs -->
           <div style="display:flex; gap:10px; margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:14px; flex-wrap:wrap;">
             <button type="button" class="btn btn-primary btn-sm" id="btnPageSubHome" onclick="switchPageSubTab('pageSubHome')">
-              <i class="fa-solid fa-house"></i> الصفحة الرئيسية (Home)
+              <i class="fa-solid fa-house"></i> 1. الرئيسية (Home)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnPageSubMenu" onclick="switchPageSubTab('pageSubMenu')">
+              <i class="fa-solid fa-utensils"></i> 2. قائمة الطعام (Menu)
             </button>
             <button type="button" class="btn btn-outline btn-sm" id="btnPageSubAbout" onclick="switchPageSubTab('pageSubAbout')">
-              <i class="fa-solid fa-circle-info"></i> صفحة قصة الضيافة (About Us)
+              <i class="fa-solid fa-circle-info"></i> 3. قصة الضيافة (About)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnPageSubReservation" onclick="switchPageSubTab('pageSubReservation')">
+              <i class="fa-solid fa-calendar-check"></i> 4. حجز طاولة (Reservation)
             </button>
             <button type="button" class="btn btn-outline btn-sm" id="btnPageSubContact" onclick="switchPageSubTab('pageSubContact')">
-              <i class="fa-solid fa-headset"></i> صفحة اتصل بنا والموقع (Contact Us)
+              <i class="fa-solid fa-headset"></i> 5. اتصل بنا والموقع (Contact)
             </button>
           </div>
 
@@ -807,12 +813,12 @@
 
             <!-- Home Hero Image Upload -->
             <div class="form-group">
-              <label class="form-label">صورة البانر الرئيسي (رابط أو رفع من جهازك) *</label>
+              <label class="form-label">صورة المشهد الأول للبانر (رابط أو رفع من جهازك) *</label>
               <div class="image-uploader-box">
                 <input type="text" id="pageHomeHeroImg" class="form-control" value="images/hero_slide1.jpg" style="margin-bottom:10px;" oninput="updateHomeHeroImgPreview(this.value)">
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
                   <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileHomeHeroImg').click()">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك / هاتفك
                   </button>
                   <input type="file" id="fileHomeHeroImg" accept="image/*" style="display:none;" onchange="handleHomeHeroImgFile(event)">
                 </div>
@@ -831,12 +837,61 @@
               <input type="text" id="pageHomeStoryTitle" class="form-control" value="أصالة الطهي العربي وتراث الموائد العريقة">
             </div>
 
-            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
-              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات الصفحة الرئيسية
-            </button>
+            <div class="form-group">
+              <label class="form-label">نص النبذة المختصرة للقصة في الصفحة الرئيسية</label>
+              <textarea id="pageHomeStoryDesc" class="form-control" rows="3">منذ بدايتنا ونحن نلتزم بفلسفة كرم الضيافة الأصيلة: استخدام أجود اللحوم النعيمية والمكونات البلدية الطازجة، وإحياء فنون الطبخ العربي المتوارثة من كبسات ومندي الخليج الفاخرة إلى أشهى الطواجن المصرية والشوا العماني الأصيل.</textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+                <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات الصفحة الرئيسية
+              </button>
+              <button type="button" class="btn btn-outline" onclick="resetPageData('home')">
+                <i class="fa-solid fa-rotate-left"></i> تراجع / استعادة الافتراضي
+              </button>
+            </div>
           </div>
 
-          <!-- SUB-TAB 2: ABOUT US -->
+          <!-- SUB-TAB 2: MENU PAGE -->
+          <div id="pageSubMenu" class="page-sub-pane" style="display:none;">
+            <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-utensils"></i> محتوى وبانر صفحة قائمة الطعام والولائم (menu.html)</h4>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">عنوان البانر العلوي (Menu Title) *</label>
+                <input type="text" id="pageMenuHeroTitle" class="form-control" value="قائمة المأكولات والولائم الفاخرة">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الوصف الترويجي في البانر (Subtitle) *</label>
+                <input type="text" id="pageMenuHeroSub" class="form-control" value="نقدم لكم تشكيلة ملكية من أرقى أطباق اللحوم البلدية والمشويات والطواجن والحلويات الشرقية المعدة بحرفية تامة.">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">صورة خلفية بانر المنيو (رابط أو رفع من جهازك) *</label>
+              <div class="image-uploader-box">
+                <input type="text" id="pageMenuHeroImg" class="form-control" value="images/hero_slide2.jpg" style="margin-bottom:10px;" oninput="updateMenuImgPreview(this.value)">
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileMenuHeroImg').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك / هاتفك
+                  </button>
+                  <input type="file" id="fileMenuHeroImg" accept="image/*" style="display:none;" onchange="handleMenuImgFile(event)">
+                </div>
+                <img id="previewMenuHeroImg" src="../images/hero_slide2.jpg" class="image-preview-thumb" style="display:block; max-height:220px;" alt="معاينة صورة بانر المنيو">
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+                <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة المنيو
+              </button>
+              <button type="button" class="btn btn-outline" onclick="resetPageData('menu')">
+                <i class="fa-solid fa-rotate-left"></i> تراجع / استعادة الافتراضي
+              </button>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 3: ABOUT US -->
           <div id="pageSubAbout" class="page-sub-pane" style="display:none;">
             <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-building"></i> محتوى صفحة قصة الضيافة (about.html)</h4>
 
@@ -873,7 +928,7 @@
                 <input type="text" id="pageAboutImg" class="form-control" value="images/story_dish1.jpg" style="margin-bottom:10px;" oninput="updateAboutImgPreview(this.value)">
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
                   <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileAboutImg').click()">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك / هاتفك
                   </button>
                   <input type="file" id="fileAboutImg" accept="image/*" style="display:none;" onchange="handleAboutImgFile(event)">
                 </div>
@@ -881,12 +936,67 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
-              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة قصة الضيافة
-            </button>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+                <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة قصة الضيافة
+              </button>
+              <button type="button" class="btn btn-outline" onclick="resetPageData('about')">
+                <i class="fa-solid fa-rotate-left"></i> تراجع / استعادة الافتراضي
+              </button>
+            </div>
           </div>
 
-          <!-- SUB-TAB 3: CONTACT US -->
+          <!-- SUB-TAB 4: RESERVATION PAGE -->
+          <div id="pageSubReservation" class="page-sub-pane" style="display:none;">
+            <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-calendar-check"></i> محتوى وبانر صفحة حجز مائدة وولائم (reservation.html)</h4>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">عنوان البانر العلوي (Reservation Title) *</label>
+                <input type="text" id="pageResHeroTitle" class="form-control" value="حجز مائدة مسبق وولائم خاصة">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الوصف الترويجي في البانر (Subtitle) *</label>
+                <input type="text" id="pageResHeroSub" class="form-control" value="احجز طاولتك أو مجلسك الملكي المفضل مسبقاً لضمان أفضل تجربة ضيافة لك ولعائلتك وضيوفك الكرام في أجواء تراثية مريحة وراقية.">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">صورة خلفية بانر الحجز (رابط أو رفع من جهازك) *</label>
+              <div class="image-uploader-box">
+                <input type="text" id="pageResHeroImg" class="form-control" value="images/hero_slide1.jpg" style="margin-bottom:10px;" oninput="updateResImgPreview(this.value)">
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileResHeroImg').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك / هاتفك
+                  </button>
+                  <input type="file" id="fileResHeroImg" accept="image/*" style="display:none;" onchange="handleResImgFile(event)">
+                </div>
+                <img id="previewResHeroImg" src="../images/hero_slide1.jpg" class="image-preview-thumb" style="display:block; max-height:220px;" alt="معاينة صورة بانر الحجز">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">عنوان صندوق الحجز (Card Title)</label>
+                <input type="text" id="pageResBoxTitle" class="form-control" value="استمارة حجز مائدة مسبق">
+              </div>
+              <div class="form-group">
+                <label class="form-label">وصف صندوق الحجز (Card Description)</label>
+                <input type="text" id="pageResBoxDesc" class="form-control" value="املأ بياناتك وسيصلك تأكيد فوري عبر الواتساب والرسائل النصية خلال دقائق معدودة لتجهيز مائدتك على أكمل وجه.">
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+                <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة الحجز
+              </button>
+              <button type="button" class="btn btn-outline" onclick="resetPageData('reservation')">
+                <i class="fa-solid fa-rotate-left"></i> تراجع / استعادة الافتراضي
+              </button>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 5: CONTACT US -->
           <div id="pageSubContact" class="page-sub-pane" style="display:none;">
             <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-headset"></i> محتوى وبيانات صفحة اتصل بنا (contact.html)</h4>
 
@@ -927,9 +1037,14 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
-              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة اتصل بنا
-            </button>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+                <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة اتصل بنا
+              </button>
+              <button type="button" class="btn btn-outline" onclick="resetPageData('contact')">
+                <i class="fa-solid fa-rotate-left"></i> تراجع / استعادة الافتراضي
+              </button>
+            </div>
           </div>
         </div>
       </section>

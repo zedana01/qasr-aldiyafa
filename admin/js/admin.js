@@ -246,6 +246,18 @@ const DEFAULT_DATA = {
       "storyP1": "في قصر الضيافة، لا نقدم مجرد وجبات، بل نعيد إحياء فنون الطهي العربي المتوارثة عبر الأجيال. ننتقي لحومنا النعيمية والبلدية الطازجة بعناية فائقة، ونطهوها باستخدام التوابل الأصلية المحمصة وحطب السمر الطبيعي ليخرج كل طبق بعبق الأصالة والفخامة.",
       "storyP2": "سواء كنت تخطط لوليمة عائلية دافئة، عشاء عمل فاخر، أو مناسبة احتفالية خاصة في مجالسنا التراثية الملكية، نعدك بتجربة ضيافة استثنائية تحاكي كرم الضيافة العربية الأصيلة في أبهى صورها."
     },
+    "menu": {
+      "heroTitle": "قائمة المأكولات والولائم الفاخرة",
+      "heroSubtitle": "نقدم لكم تشكيلة ملكية من أرقى أطباق اللحوم البلدية والمشويات والطواجن والحلويات الشرقية المعدة بحرفية تامة.",
+      "heroImg": "images/hero_slide2.jpg"
+    },
+    "reservation": {
+      "heroTitle": "حجز مائدة مسبق وولائم خاصة",
+      "heroSubtitle": "احجز طاولتك أو مجلسك الملكي المفضل مسبقاً لضمان أفضل تجربة ضيافة لك ولعائلتك وضيوفك الكرام في أجواء تراثية مريحة وراقية.",
+      "heroImg": "images/hero_slide1.jpg",
+      "boxTitle": "استمارة حجز مائدة مسبق",
+      "boxDesc": "املأ بياناتك وسيصلك تأكيد فوري عبر الواتساب والرسائل النصية خلال دقائق معدودة لتجهيز مائدتك على أكمل وجه."
+    },
     "about": {
       "heroTitle": "قصة مطعم قصر الضيافة",
       "heroSubtitle": "أكثر من عقدين من الشغف في تقديم أصول الطهي العربي العريق والولائم الملكية في أجواء من الفخامة التراثية.",
@@ -649,13 +661,20 @@ function switchPageSubTab(subId) {
   const target = document.getElementById(subId);
   if (target) target.style.display = 'block';
 
-  const btnHome = document.getElementById('btnPageSubHome');
-  const btnAbout = document.getElementById('btnPageSubAbout');
-  const btnContact = document.getElementById('btnPageSubContact');
+  const subBtns = {
+    'pageSubHome': 'btnPageSubHome',
+    'pageSubMenu': 'btnPageSubMenu',
+    'pageSubAbout': 'btnPageSubAbout',
+    'pageSubReservation': 'btnPageSubReservation',
+    'pageSubContact': 'btnPageSubContact'
+  };
 
-  if (btnHome) btnHome.className = (subId === 'pageSubHome') ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
-  if (btnAbout) btnAbout.className = (subId === 'pageSubAbout') ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
-  if (btnContact) btnContact.className = (subId === 'pageSubContact') ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
+  for (const [paneId, btnId] of Object.entries(subBtns)) {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      btn.className = (paneId === subId) ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
+    }
+  }
 }
 
 function updateHomeHeroImgPreview(src) {
@@ -685,6 +704,28 @@ function setHomeHeroPreset(path) {
   updateHomeHeroImgPreview(path);
 }
 
+function updateMenuImgPreview(src) {
+  const prev = document.getElementById('previewMenuHeroImg');
+  if (prev && src && src.trim()) {
+    const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
+    prev.src = fixed;
+    prev.style.display = 'block';
+  }
+}
+
+function handleMenuImgFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result;
+    document.getElementById('pageMenuHeroImg').value = base64;
+    updateMenuImgPreview(base64);
+    showToast('تم تحميل صورة بانر المنيو من جهازك!');
+  };
+  reader.readAsDataURL(file);
+}
+
 function updateAboutImgPreview(src) {
   const prev = document.getElementById('previewAboutImg');
   if (prev && src && src.trim()) {
@@ -707,22 +748,58 @@ function handleAboutImgFile(event) {
   reader.readAsDataURL(file);
 }
 
+function updateResImgPreview(src) {
+  const prev = document.getElementById('previewResHeroImg');
+  if (prev && src && src.trim()) {
+    const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
+    prev.src = fixed;
+    prev.style.display = 'block';
+  }
+}
+
+function handleResImgFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result;
+    document.getElementById('pageResHeroImg').value = base64;
+    updateResImgPreview(base64);
+    showToast('تم تحميل صورة بانر الحجز من جهازك!');
+  };
+  reader.readAsDataURL(file);
+}
+
 function populatePagesForm() {
-  if (!appData || !appData.pages) return;
+  if (!appData) return;
+  if (!appData.pages) appData.pages = {};
   const p = appData.pages;
 
+  // 1. Home
   if (p.home) {
-    if (document.getElementById('pageHomeHeroTitle')) document.getElementById('pageHomeHeroTitle').value = p.home.heroTitle || '';
+    if (document.getElementById('pageHomeHeroTitle')) document.getElementById('pageHomeHeroTitle').value = p.home.heroTitle || 'روائع الطهي العربي الأصيل والولائم الملكية';
     if (document.getElementById('pageHomeHeroDesc')) document.getElementById('pageHomeHeroDesc').value = p.home.heroDesc || '';
     if (document.getElementById('pageHomeHeroImg')) {
       document.getElementById('pageHomeHeroImg').value = p.home.heroImg || 'images/hero_slide1.jpg';
       updateHomeHeroImgPreview(p.home.heroImg || 'images/hero_slide1.jpg');
     }
     if (document.getElementById('pageHomeStoryTitle')) document.getElementById('pageHomeStoryTitle').value = p.home.storyTitle || '';
+    if (document.getElementById('pageHomeStoryDesc')) document.getElementById('pageHomeStoryDesc').value = p.home.storyDesc || '';
   }
 
+  // 2. Menu
+  if (p.menu) {
+    if (document.getElementById('pageMenuHeroTitle')) document.getElementById('pageMenuHeroTitle').value = p.menu.heroTitle || 'قائمة المأكولات والولائم الفاخرة';
+    if (document.getElementById('pageMenuHeroSub')) document.getElementById('pageMenuHeroSub').value = p.menu.heroSubtitle || '';
+    if (document.getElementById('pageMenuHeroImg')) {
+      document.getElementById('pageMenuHeroImg').value = p.menu.heroImg || 'images/hero_slide2.jpg';
+      updateMenuImgPreview(p.menu.heroImg || 'images/hero_slide2.jpg');
+    }
+  }
+
+  // 3. About
   if (p.about) {
-    if (document.getElementById('pageAboutHeroTitle')) document.getElementById('pageAboutHeroTitle').value = p.about.heroTitle || '';
+    if (document.getElementById('pageAboutHeroTitle')) document.getElementById('pageAboutHeroTitle').value = p.about.heroTitle || 'قصة مطعم قصر الضيافة';
     if (document.getElementById('pageAboutHeroSub')) document.getElementById('pageAboutHeroSub').value = p.about.heroSubtitle || '';
     if (document.getElementById('pageAboutStoryTitle')) document.getElementById('pageAboutStoryTitle').value = p.about.storyTitle || '';
     if (document.getElementById('pageAboutStoryP1')) document.getElementById('pageAboutStoryP1').value = p.about.storyP1 || '';
@@ -733,14 +810,27 @@ function populatePagesForm() {
     }
   }
 
+  // 4. Reservation
+  if (p.reservation) {
+    if (document.getElementById('pageResHeroTitle')) document.getElementById('pageResHeroTitle').value = p.reservation.heroTitle || 'حجز مائدة مسبق وولائم خاصة';
+    if (document.getElementById('pageResHeroSub')) document.getElementById('pageResHeroSub').value = p.reservation.heroSubtitle || '';
+    if (document.getElementById('pageResHeroImg')) {
+      document.getElementById('pageResHeroImg').value = p.reservation.heroImg || 'images/hero_slide1.jpg';
+      updateResImgPreview(p.reservation.heroImg || 'images/hero_slide1.jpg');
+    }
+    if (document.getElementById('pageResBoxTitle')) document.getElementById('pageResBoxTitle').value = p.reservation.boxTitle || 'استمارة حجز مائدة مسبق';
+    if (document.getElementById('pageResBoxDesc')) document.getElementById('pageResBoxDesc').value = p.reservation.boxDesc || '';
+  }
+
+  // 5. Contact
   if (p.contact) {
-    if (document.getElementById('pageContactHeroTitle')) document.getElementById('pageContactHeroTitle').value = p.contact.heroTitle || '';
+    if (document.getElementById('pageContactHeroTitle')) document.getElementById('pageContactHeroTitle').value = p.contact.heroTitle || 'تواصل مع قصر الضيافة';
     if (document.getElementById('pageContactHeroSub')) document.getElementById('pageContactHeroSub').value = p.contact.heroSubtitle || '';
     if (document.getElementById('pageContactWhatsApp')) document.getElementById('pageContactWhatsApp').value = p.contact.whatsapp || '01027093535';
     if (document.getElementById('pageContactPhone')) document.getElementById('pageContactPhone').value = p.contact.phone || '01027093535';
-    if (document.getElementById('pageContactEmail')) document.getElementById('pageContactEmail').value = p.contact.email || '';
-    if (document.getElementById('pageContactAddress')) document.getElementById('pageContactAddress').value = p.contact.address || '';
-    if (document.getElementById('pageContactWorkingHours')) document.getElementById('pageContactWorkingHours').value = p.contact.workingHours || '';
+    if (document.getElementById('pageContactEmail')) document.getElementById('pageContactEmail').value = p.contact.email || 'booking@qasr-aldiyafa.com';
+    if (document.getElementById('pageContactAddress')) document.getElementById('pageContactAddress').value = p.contact.address || 'طريق الملك فهد، حي المروج، الرياض، المملكة العربية السعودية';
+    if (document.getElementById('pageContactWorkingHours')) document.getElementById('pageContactWorkingHours').value = p.contact.workingHours || 'يومياً من الساعة 12:00 ظهراً وحتى 01:30 بعد منتصف الليل';
   }
 }
 
@@ -749,165 +839,202 @@ function saveAllPagesData() {
   if (!appData.pages) appData.pages = {};
 
   appData.pages.home = {
-    heroTitle: document.getElementById('pageHomeHeroTitle').value.trim(),
-    heroDesc: document.getElementById('pageHomeHeroDesc').value.trim(),
-    heroImg: document.getElementById('pageHomeHeroImg').value.trim() || 'images/hero_slide1.jpg',
-    storyTitle: document.getElementById('pageHomeStoryTitle').value.trim()
+    heroTitle: document.getElementById('pageHomeHeroTitle') ? document.getElementById('pageHomeHeroTitle').value.trim() : '',
+    heroDesc: document.getElementById('pageHomeHeroDesc') ? document.getElementById('pageHomeHeroDesc').value.trim() : '',
+    heroImg: document.getElementById('pageHomeHeroImg') ? document.getElementById('pageHomeHeroImg').value.trim() : 'images/hero_slide1.jpg',
+    storyTitle: document.getElementById('pageHomeStoryTitle') ? document.getElementById('pageHomeStoryTitle').value.trim() : '',
+    storyDesc: document.getElementById('pageHomeStoryDesc') ? document.getElementById('pageHomeStoryDesc').value.trim() : ''
+  };
+
+  appData.pages.menu = {
+    heroTitle: document.getElementById('pageMenuHeroTitle') ? document.getElementById('pageMenuHeroTitle').value.trim() : '',
+    heroSubtitle: document.getElementById('pageMenuHeroSub') ? document.getElementById('pageMenuHeroSub').value.trim() : '',
+    heroImg: document.getElementById('pageMenuHeroImg') ? document.getElementById('pageMenuHeroImg').value.trim() : 'images/hero_slide2.jpg'
   };
 
   appData.pages.about = {
-    heroTitle: document.getElementById('pageAboutHeroTitle').value.trim(),
-    heroSubtitle: document.getElementById('pageAboutHeroSub').value.trim(),
-    storyTitle: document.getElementById('pageAboutStoryTitle').value.trim(),
-    storyP1: document.getElementById('pageAboutStoryP1').value.trim(),
-    storyP2: document.getElementById('pageAboutStoryP2').value.trim(),
-    image: document.getElementById('pageAboutImg').value.trim() || 'images/story_dish1.jpg'
+    heroTitle: document.getElementById('pageAboutHeroTitle') ? document.getElementById('pageAboutHeroTitle').value.trim() : '',
+    heroSubtitle: document.getElementById('pageAboutHeroSub') ? document.getElementById('pageAboutHeroSub').value.trim() : '',
+    storyTitle: document.getElementById('pageAboutStoryTitle') ? document.getElementById('pageAboutStoryTitle').value.trim() : '',
+    storyP1: document.getElementById('pageAboutStoryP1') ? document.getElementById('pageAboutStoryP1').value.trim() : '',
+    storyP2: document.getElementById('pageAboutStoryP2') ? document.getElementById('pageAboutStoryP2').value.trim() : '',
+    image: document.getElementById('pageAboutImg') ? document.getElementById('pageAboutImg').value.trim() : 'images/story_dish1.jpg'
+  };
+
+  appData.pages.reservation = {
+    heroTitle: document.getElementById('pageResHeroTitle') ? document.getElementById('pageResHeroTitle').value.trim() : '',
+    heroSubtitle: document.getElementById('pageResHeroSub') ? document.getElementById('pageResHeroSub').value.trim() : '',
+    heroImg: document.getElementById('pageResHeroImg') ? document.getElementById('pageResHeroImg').value.trim() : 'images/hero_slide1.jpg',
+    boxTitle: document.getElementById('pageResBoxTitle') ? document.getElementById('pageResBoxTitle').value.trim() : '',
+    boxDesc: document.getElementById('pageResBoxDesc') ? document.getElementById('pageResBoxDesc').value.trim() : ''
   };
 
   appData.pages.contact = {
-    heroTitle: document.getElementById('pageContactHeroTitle').value.trim(),
-    heroSubtitle: document.getElementById('pageContactHeroSub').value.trim(),
-    whatsapp: document.getElementById('pageContactWhatsApp').value.trim(),
-    phone: document.getElementById('pageContactPhone').value.trim(),
-    email: document.getElementById('pageContactEmail').value.trim(),
-    address: document.getElementById('pageContactAddress').value.trim(),
-    workingHours: document.getElementById('pageContactWorkingHours').value.trim()
+    heroTitle: document.getElementById('pageContactHeroTitle') ? document.getElementById('pageContactHeroTitle').value.trim() : '',
+    heroSubtitle: document.getElementById('pageContactHeroSub') ? document.getElementById('pageContactHeroSub').value.trim() : '',
+    whatsapp: document.getElementById('pageContactWhatsApp') ? document.getElementById('pageContactWhatsApp').value.trim() : '01027093535',
+    phone: document.getElementById('pageContactPhone') ? document.getElementById('pageContactPhone').value.trim() : '01027093535',
+    email: document.getElementById('pageContactEmail') ? document.getElementById('pageContactEmail').value.trim() : '',
+    address: document.getElementById('pageContactAddress') ? document.getElementById('pageContactAddress').value.trim() : '',
+    workingHours: document.getElementById('pageContactWorkingHours') ? document.getElementById('pageContactWorkingHours').value.trim() : ''
   };
 
   if (appData.restaurantInfo) {
-    appData.restaurantInfo.whatsapp = appData.pages.contact.whatsapp;
-    appData.restaurantInfo.whatsappFormatted = appData.pages.contact.whatsapp.replace(/[^0-9]/g, '');
-    appData.restaurantInfo.phone = appData.pages.contact.phone;
-    appData.restaurantInfo.email = appData.pages.contact.email;
-    appData.restaurantInfo.address = appData.pages.contact.address;
+    if (appData.pages.contact.whatsapp) appData.restaurantInfo.whatsapp = appData.pages.contact.whatsapp;
+    if (appData.pages.contact.phone) appData.restaurantInfo.phone = appData.pages.contact.phone;
+    if (appData.pages.contact.email) appData.restaurantInfo.email = appData.pages.contact.email;
+    if (appData.pages.contact.address) appData.restaurantInfo.address = appData.pages.contact.address;
+    if (appData.pages.contact.workingHours) appData.restaurantInfo.hours = appData.pages.contact.workingHours;
   }
 
   saveAppData();
-  showToast('تم حفظ كافة تعديلات الصفحات والصور بنجاح! تظهر فوراً على الموقع.');
+  showToast('تم حفظ كافة تعديلات الصفحات بنجاح ومزامنتها فوراً مع الموقع!');
 }
 
-// 9. RESERVATIONS MANAGER
-function renderReservationsTable(list) {
-  const tbody = document.getElementById('reservationsTableBody');
-  if (!tbody) return;
-  if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:28px; color:#94a3b8;">لا توجد طلبات حجز مسجلة</td></tr>';
-    return;
-  }
-
-  const wa = (appData.restaurantInfo && appData.restaurantInfo.whatsappFormatted) ? appData.restaurantInfo.whatsappFormatted : '201027093535';
-
-  tbody.innerHTML = list.map((r, idx) => `
-    <tr>
-      <td>${idx + 1}</td>
-      <td style="font-weight:800;">${r.name}</td>
-      <td><a href="tel:${r.phone}" style="color:var(--primary); font-weight:700; text-decoration:none;">${r.phone}</a></td>
-      <td><span class="badge badge-primary">${r.guests || r.type || 'وليمة'}</span></td>
-      <td>${r.date || 'اليوم'}</td>
-      <td>${r.time || 'مساءً'}</td>
-      <td style="max-width:240px; font-size:12.5px; color:#475569;">${r.notes || '-'}</td>
-      <td>
-        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#c59d27;">
-          <i class="fa-brands fa-whatsapp"></i> رد
-        </a>
-      </td>
-    </tr>
-  `).join('');
+function resetPageData(pageKey) {
+  if (!confirm('هل تريد إلغاء التعديلات غير المحفوظة واستعادة البيانات؟')) return;
+  loadAppData();
+  populatePagesForm();
+  showToast('تمت استعادة البيانات بنجاح!');
 }
 
-function clearAllReservations() {
-  if (!confirm('هل أنت متأكد من مسح جميع طلبات الحجز من السجل؟')) return;
-  localStorage.setItem('qasr_reservations', JSON.stringify([]));
-  renderReservationsTable([]);
-  renderOverviewReservations([]);
-  document.getElementById('statResCount').textContent = 0;
-  showToast('تم إفراغ سجل الحجوزات بنجاح');
-}
 
-// 10. CMS & RESTAURANT INFO
-function populateCMSForm() {
-  if (!appData || !appData.restaurantInfo) return;
-  const a = appData.restaurantInfo;
-  if (document.getElementById('cmsName')) document.getElementById('cmsName').value = a.name || '';
-  if (document.getElementById('cmsEnName')) document.getElementById('cmsEnName').value = a.enName || '';
-  if (document.getElementById('cmsWhatsApp')) document.getElementById('cmsWhatsApp').value = a.whatsapp || '01027093535';
-  if (document.getElementById('cmsPhone')) document.getElementById('cmsPhone').value = a.phone || '01027093535';
-  if (document.getElementById('cmsEmail')) document.getElementById('cmsEmail').value = a.email || '';
-  if (document.getElementById('cmsAddress')) document.getElementById('cmsAddress').value = a.address || '';
-  if (document.getElementById('cmsAdminPin')) document.getElementById('cmsAdminPin').value = a.adminPin || '1234';
-}
 
-function saveCMSData() {
-  if (!appData) return;
-  if (!appData.restaurantInfo) appData.restaurantInfo = {};
 
-  appData.restaurantInfo.name = document.getElementById('cmsName').value.trim();
-  appData.restaurantInfo.enName = document.getElementById('cmsEnName').value.trim();
-  appData.restaurantInfo.whatsapp = document.getElementById('cmsWhatsApp').value.trim();
-  appData.restaurantInfo.whatsappFormatted = appData.restaurantInfo.whatsapp.replace(/[^0-9]/g, '');
-  appData.restaurantInfo.phone = document.getElementById('cmsPhone').value.trim();
-  appData.restaurantInfo.email = document.getElementById('cmsEmail').value.trim();
-  appData.restaurantInfo.address = document.getElementById('cmsAddress').value.trim();
-  appData.restaurantInfo.adminPin = document.getElementById('cmsAdminPin').value.trim() || '1234';
-
-  saveAppData();
-  showToast('تم حفظ كافة إعدادات المطعم بنجاح!');
-  document.getElementById('statWhatsApp').textContent = appData.restaurantInfo.phone;
-}
-
-// 11. PERSISTENCE & BACKUP
+// ==========================================================================
+// DATA PERSISTENCE & SYSTEM CORE
+// ==========================================================================
 function saveAppData() {
   try {
     localStorage.setItem('qasr_data', JSON.stringify(appData));
   } catch(e) {
-    console.error('Failed to save to localStorage:', e);
-    showToast('تنبيه: حجم الصور كبير جداً، يرجى استخدام صور أصغر حجماً');
+    console.error('Error saving appData to localStorage:', e);
   }
 }
 
-function exportDataJSON() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
-  const dl = document.createElement('a');
-  dl.setAttribute("href", dataStr);
-  dl.setAttribute("download", "qasr_backup.json");
-  document.body.appendChild(dl);
-  dl.click();
-  dl.remove();
-  showToast('تم تنزيل النسخة الاحتياطية qasr_backup.json بنجاح!');
+function loadAppData() {
+  try {
+    const raw = localStorage.getItem('qasr_data');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.dishes)) {
+        appData = parsed;
+      }
+    }
+  } catch(e) {
+    console.error('Error loading appData from localStorage:', e);
+  }
 }
 
-function importDataJSON(event) {
+function saveGeneralSettings() {
+  if (!appData) return;
+  if (!appData.restaurantInfo) appData.restaurantInfo = {};
+
+  const name = document.getElementById('settingRestName') ? document.getElementById('settingRestName').value.trim() : '';
+  const phone = document.getElementById('settingRestPhone') ? document.getElementById('settingRestPhone').value.trim() : '';
+  const wa = document.getElementById('settingRestWa') ? document.getElementById('settingRestWa').value.trim() : '';
+  const email = document.getElementById('settingRestEmail') ? document.getElementById('settingRestEmail').value.trim() : '';
+  const address = document.getElementById('settingRestAddress') ? document.getElementById('settingRestAddress').value.trim() : '';
+  const hours = document.getElementById('settingRestHours') ? document.getElementById('settingRestHours').value.trim() : '';
+  const pin = document.getElementById('settingAdminPin') ? document.getElementById('settingAdminPin').value.trim() : '1234';
+
+  if (name) appData.restaurantInfo.name = name;
+  if (phone) appData.restaurantInfo.phone = phone;
+  if (wa) appData.restaurantInfo.whatsapp = wa;
+  if (email) appData.restaurantInfo.email = email;
+  if (address) appData.restaurantInfo.address = address;
+  if (hours) appData.restaurantInfo.hours = hours;
+  if (pin) appData.restaurantInfo.adminPin = pin;
+
+  // Also update contact page data
+  if (!appData.pages) appData.pages = {};
+  if (!appData.pages.contact) appData.pages.contact = {};
+  if (wa) appData.pages.contact.whatsapp = wa;
+  if (phone) appData.pages.contact.phone = phone;
+  if (email) appData.pages.contact.email = email;
+  if (address) appData.pages.contact.address = address;
+  if (hours) appData.pages.contact.workingHours = hours;
+
+  saveAppData();
+  showToast('تم حفظ إعدادات المطعم والبيانات بنجاح!');
+}
+
+function populateGeneralSettings() {
+  if (!appData || !appData.restaurantInfo) return;
+  const info = appData.restaurantInfo;
+
+  if (document.getElementById('settingRestName') && info.name) document.getElementById('settingRestName').value = info.name;
+  if (document.getElementById('settingRestPhone') && info.phone) document.getElementById('settingRestPhone').value = info.phone;
+  if (document.getElementById('settingRestWa') && info.whatsapp) document.getElementById('settingRestWa').value = info.whatsapp;
+  if (document.getElementById('settingRestEmail') && info.email) document.getElementById('settingRestEmail').value = info.email;
+  if (document.getElementById('settingRestAddress') && info.address) document.getElementById('settingRestAddress').value = info.address;
+  if (document.getElementById('settingRestHours') && info.hours) document.getElementById('settingRestHours').value = info.hours;
+  if (document.getElementById('settingAdminPin') && info.adminPin) document.getElementById('settingAdminPin').value = info.adminPin;
+}
+
+function exportJSONBackup() {
+  const jsonStr = JSON.stringify(appData, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `qasr-aldiyafa-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('تم تصدير النسخة الاحتياطية بنجاح!');
+}
+
+function importJSONBackup(event) {
   const file = event.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
-      const parsed = JSON.parse(e.target.result);
-      if (parsed && (parsed.dishes || parsed.restaurantInfo)) {
-        appData = parsed;
+      const imported = JSON.parse(e.target.result);
+      if (imported && Array.isArray(imported.dishes)) {
+        appData = imported;
         saveAppData();
         renderDashboard();
-        showToast('تم استيراد البيانات وتطبيقها بنجاح!');
+        renderDishesTable(appData.dishes);
+        showToast('تمت استعادة النسخة الاحتياطية بنجاح!');
       } else {
-        alert('الملف المحدد لا يحتوي على بنية بيانات قصر الضيافة الصحيحة.');
+        alert('ملف النسخة الاحتياطية غير صالح.');
       }
     } catch(err) {
-      alert('حدث خطأ أثناء قراءة ملف JSON: ' + err.message);
+      alert('حدث خطأ أثناء قراءة الملف: ' + err.message);
     }
   };
   reader.readAsText(file);
 }
 
-function resetDefaultData() {
-  if (!confirm('تحذير: هل أنت متأكد من رغبتك في إعادة تعيين كافة البيانات إلى الإعدادات النموذجية الأصلية؟')) return;
-  appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
-  saveAppData();
+function resetToDefaultData() {
+  if (!confirm('تحذير: هل أنت متأكد من رغبتك في استعادة كافة بيانات الموقع والأطباق إلى إعدادات المصنع الأصلية؟')) return;
+  localStorage.removeItem('qasr_data');
+  initData();
   renderDashboard();
-  showToast('تمت استعادة البيانات النموذجية بنجاح!');
+  renderDishesTable(appData.dishes);
+  showToast('تمت استعادة بيانات المصنع بنجاح!');
 }
 
-// Launch
-document.addEventListener('DOMContentLoaded', () => {
+function clearAllReservations() {
+  if (!confirm('هل تريد مسح سجل الحجوزات بالكامل؟')) return;
+  localStorage.removeItem('qasr_reservations_data');
+  localStorage.removeItem('qasr_reservations');
+  document.getElementById('statResCount').textContent = '0';
+  const tbody = document.getElementById('reservationsTableBody');
+  if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px; color:#94a3b8;">لا توجد أي طلبات حجز حالياً.</td></tr>';
+  showToast('تم مسح سجل الحجوزات بنجاح!');
+}
+
+
+// ==========================================================================
+// START ADMIN SYSTEM
+// ==========================================================================
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initData);
+} else {
   initData();
-});
+}

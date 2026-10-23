@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -76,16 +76,16 @@
 <!-- 3. Hero Banner with Multi-Slide Cinematic Ken Burns Crossfade -->
 <section id="hero" class="savory-hero-banner">
 <div class="hero-slides-wrapper" id="heroSlidesWrapper">
-<div class="hero-slide-bg active" style="background-image: url('images/hero_slide1.jpg');"></div>
+<div class="hero-slide-bg active" id="heroSlide1" style="background-image: url('images/hero_slide1.jpg');"></div>
 <div class="hero-slide-bg" style="background-image: url('images/omani_shuwa.jpg');"></div>
 <div class="hero-slide-bg" style="background-image: url('images/hero_slide2.jpg');"></div>
 <div class="hero-slide-bg" style="background-image: url('images/hero_slide3.jpg');"></div></div>
 <div class="hero-overlay"></div>
 <div class="savory-hero-card">
-    <span class="savory-script-accent">أصالة المذاق وكرم الضيافة</span></p>
-<h1>روائع الطهي العربي الأصيل والولائم الملكية</h1>
-<div class="savory-hero-divider"></div>
-<p>
+    <span class="savory-script-accent" id="heroAccent">أصالة المذاق وكرم الضيافة</span>
+    <h1 id="heroTitle">روائع الطهي العربي الأصيل والولائم الملكية</h1>
+    <div class="savory-hero-divider"></div>
+    <p id="heroDesc">
       نبتكر تجارب طهي متوارثة تمزج بين كرم الضيافة الخليجية وعراقة الطواجن المصرية وسحر البهارات العمانية، لنصنع لكم مائدة لا تُنسى في كل زيارة.
     </p>
 <div class="hero-features-ribbon">
@@ -103,12 +103,12 @@
 <!-- 4. Section: Our Story -->
 <section id="our-story" class="section-story">
 <div class="story-text-wrap">
-    <span class="script-tag">قصة كرمنا</span></p>
-<h2>أصالة الطهي العربي وتراث الموائد العريقة</h2>
-<p>
+    <span class="script-tag">قصة كرمنا</span>
+    <h2 id="storyTitle">أصالة الطهي العربي وتراث الموائد العريقة</h2>
+    <p id="storyDesc1">
       منذ بدايتنا ونحن نلتزم بفلسفة كرم الضيافة الأصيلة: استخدام أجود اللحوم النعيمية والمكونات البلدية الطازجة، وإحياء فنون الطبخ العربي المتوارثة من كبسات ومندي الخليج الفاخرة إلى أشهى الطواجن المصرية والشوا العماني الأصيل.
     </p>
-<p>
+    <p id="storyDesc2">
       كل طبق في قصر الضيافة يُعد بعناية فائقة على أيدي طهاة متمرسين في فنون الطهي الشعبي والملكي، من الخبز المخبوز طازجاً في التنور إلى أجود أنواع التمور والقهوة العربية المهيلة.
     </p>
 <div class="story-signature-box">
@@ -714,7 +714,7 @@
           </p>
           <div class="footer-social-links">
             <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align:middle; display:inline-block;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
             <a href="#" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
             <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
           </div>
