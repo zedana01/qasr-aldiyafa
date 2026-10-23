@@ -46,7 +46,7 @@
             <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
               <div style="font-size:18px; font-weight:900; color:#c59d27;">${Number(priceSar).toLocaleString('en-US')} <span style="font-size:12px; font-weight:700;">ر.س</span></div>
               <div style="display:flex; gap:6px;">
-                <a href="https://wa.me/${waFormatted}?text=${waMsg}" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+                <a href="https://wa.me/${waFormatted}?text=${waMsg}" target="_blank" rel="noopener" class="btn-card-order" style="background:#c59d27; color:#fff; border-color:#c59d27;" title="طلب مباشر عبر واتساب">
                   <i class="fa-brands fa-whatsapp"></i> واتساب
                 </a>
                 <a href="dish-detail.html?id=${d.id}" class="btn-card-order" title="تفاصيل الصنف">

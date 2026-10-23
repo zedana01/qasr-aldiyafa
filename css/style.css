@@ -314,7 +314,7 @@ html, body {
 /* 5. Interactive Testimonials Carousel (آراء العملاء سلايدر دوار) */
 .section-parallax-quote {
   position: relative;
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/parallax_bg.jpg') center/cover fixed no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/parallax_bg.jpg') center/cover fixed no-repeat;
   padding: 110px 30px 100px;
   text-align: center;
   color: #ffffff;
@@ -1952,7 +1952,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span:not([class*="fa-"]), button, input, sel
 
 .nav-links-wrap .nav-order-btn,
 .btn-nav-reserve {
-  background: linear-gradient(135deg, #25d366, #128c7e) !important;
+  background: linear-gradient(135deg, #c59d27, #987515) !important;
   color: #ffffff !important;
   padding: 9px 18px !important;
   border-radius: 30px !important;
@@ -1962,7 +1962,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span:not([class*="fa-"]), button, input, sel
   align-items: center !important;
   gap: 8px !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35) !important;
+  box-shadow: 0 4px 15px rgba(197, 157, 39, 0.35) !important;
   transition: all 0.25s ease !important;
   border: none !important;
 }
@@ -1970,7 +1970,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span:not([class*="fa-"]), button, input, sel
 .nav-links-wrap .nav-order-btn:hover,
 .btn-nav-reserve:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(197, 157, 39, 0.5) !important;
   color: #ffffff !important;
 }
 
@@ -2233,4 +2233,306 @@ body, h1, h2, h3, h4, h5, h6, p, a, span:not([class*="fa-"]), button, input, sel
     text-align: center !important;
     gap: 8px !important;
   }
+}
+
+
+/* ==========================================================================
+   REFINED LUXURY THEME: ZERO GREEN, PURE ORIENTAL GOLD, AMBER & CHARCOAL
+   ========================================================================== */
+
+/* 1. Global Action Buttons (No Green Anywhere) */
+.nav-links-wrap .nav-order-btn,
+.nav-order-btn,
+.btn-card-order,
+.btn-nav-reserve {
+  background: linear-gradient(135deg, #c59d27 0%, #987515 100%) !important;
+  border: 1px solid rgba(223, 190, 135, 0.6) !important;
+  color: #0c0907 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 15px rgba(197, 157, 39, 0.35) !important;
+  transition: all 0.25s ease !important;
+}
+
+.nav-links-wrap .nav-order-btn:hover,
+.nav-order-btn:hover,
+.btn-card-order:hover,
+.btn-nav-reserve:hover {
+  background: linear-gradient(135deg, #dfbe87 0%, #c59d27 100%) !important;
+  color: #0c0907 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(197, 157, 39, 0.55) !important;
+}
+
+.nav-order-btn i,
+.btn-card-order i {
+  color: #0c0907 !important;
+}
+
+/* 2. Parallax Testimonials Slider Refinement */
+.section-parallax-quote {
+  position: relative !important;
+  background: linear-gradient(180deg, rgba(13, 10, 8, 0.88) 0%, rgba(20, 16, 12, 0.78) 50%, rgba(13, 10, 8, 0.92) 100%),
+              url('../images/parallax_bg.jpg') center/cover no-repeat fixed !important;
+  padding: 120px 24px 110px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+  direction: rtl !important;
+  overflow: hidden !important;
+  border-top: 1px solid rgba(197, 157, 39, 0.3) !important;
+  border-bottom: 1px solid rgba(197, 157, 39, 0.3) !important;
+}
+
+.testimonials-slider-container {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  min-height: 280px !important;
+}
+
+.testimonial-stars {
+  color: #dfbe87 !important;
+  font-size: 22px !important;
+  margin-bottom: 22px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.testimonial-stars i {
+  color: #dfbe87 !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.testimonial-slide h2 {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 20px 0 !important;
+  line-height: 1.45 !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.testimonial-slide p {
+  font-size: 19px !important;
+  color: #e2d9cd !important;
+  line-height: 1.9 !important;
+  margin: 0 auto 30px auto !important;
+  max-width: 800px !important;
+  font-weight: 500 !important;
+}
+
+.testimonial-author-box {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  margin-top: 15px !important;
+}
+
+.author-avatar {
+  width: 65px !important;
+  height: 65px !important;
+  border-radius: 50% !important;
+  border: 2px solid #c59d27 !important;
+  object-fit: cover !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+}
+
+.author-name {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+.author-role {
+  font-size: 13.5px !important;
+  color: #dfbe87 !important;
+  font-weight: 600 !important;
+}
+
+/* 3. Luxury Table Reservation Section Revamp */
+.section-reservation {
+  padding: 100px 24px !important;
+  background: #0d0a08 !important;
+  background: radial-gradient(circle at 50% 20%, #1a140d 0%, #0d0a08 100%) !important;
+  border-top: 1px solid rgba(197, 157, 39, 0.25) !important;
+  border-bottom: 1px solid rgba(197, 157, 39, 0.25) !important;
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+.res-card-box {
+  background: rgba(22, 17, 13, 0.95) !important;
+  border: 1px solid rgba(197, 157, 39, 0.35) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(223, 190, 135, 0.15) !important;
+  padding: 55px 45px !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  text-align: right !important;
+  position: relative !important;
+}
+
+.res-card-header {
+  text-align: center !important;
+  margin-bottom: 40px !important;
+}
+
+.res-card-header span.script-tag {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #dfbe87 !important;
+  display: inline-block !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 8px !important;
+  background: rgba(197, 157, 39, 0.1);
+  padding: 4px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(197, 157, 39, 0.25);
+}
+
+.res-card-header h2 {
+  font-size: 34px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin: 10px 0 12px 0 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.res-card-header p {
+  color: #b5aba0 !important;
+  font-size: 16px !important;
+  margin: 0 auto !important;
+  max-width: 650px !important;
+  line-height: 1.7 !important;
+}
+
+.res-form-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 22px !important;
+}
+
+.res-input-field {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.res-input-field label {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #dfbe87 !important;
+  margin-bottom: 8px !important;
+}
+
+.res-input-field input,
+.res-input-field select,
+.res-input-field textarea {
+  width: 100% !important;
+  background: rgba(14, 11, 8, 0.85) !important;
+  border: 1px solid rgba(197, 157, 39, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 13px 16px !important;
+  font-size: 15px !important;
+  color: #f1f5f9 !important;
+  font-family: inherit !important;
+  outline: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.res-input-field input:focus,
+.res-input-field select:focus,
+.res-input-field textarea:focus {
+  border-color: #dfbe87 !important;
+  background: rgba(20, 16, 12, 1) !important;
+  box-shadow: 0 0 15px rgba(197, 157, 39, 0.25) !important;
+}
+
+.res-input-field select option {
+  background: #14100c !important;
+  color: #f1f5f9 !important;
+}
+
+.res-input-field.span-3 {
+  grid-column: span 3 !important;
+}
+
+.btn-submit-reservation {
+  grid-column: span 3 !important;
+  background: linear-gradient(135deg, #c59d27 0%, #987515 100%) !important;
+  border: 1px solid #dfbe87 !important;
+  color: #0c0907 !important;
+  font-size: 17px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.5px !important;
+  padding: 16px 30px !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+  box-shadow: 0 6px 20px rgba(197, 157, 39, 0.35) !important;
+  width: 100% !important;
+}
+
+.btn-submit-reservation:hover {
+  background: linear-gradient(135deg, #dfbe87 0%, #c59d27 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(197, 157, 39, 0.5) !important;
+}
+
+@media (max-width: 850px) {
+  .res-form-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .res-input-field.span-3,
+  .btn-submit-reservation {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .res-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .res-input-field.span-3,
+  .btn-submit-reservation {
+    grid-column: span 1 !important;
+  }
+  .res-card-box {
+    padding: 35px 20px !important;
+  }
+}
+
+/* 4. Refined Footer Reservation Button */
+.footer-reservation-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 13px 20px !important;
+  background: linear-gradient(135deg, #c59d27 0%, #987515 100%) !important;
+  border: 1px solid rgba(223, 190, 135, 0.6) !important;
+  color: #0c0907 !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 15px rgba(197, 157, 39, 0.35) !important;
+  margin-top: 14px !important;
+}
+
+.footer-reservation-btn:hover {
+  background: linear-gradient(135deg, #dfbe87 0%, #c59d27 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(197, 157, 39, 0.55) !important;
+  color: #0c0907 !important;
 }

@@ -433,7 +433,7 @@ function renderOverviewReservations(list) {
       <td>${r.date || 'اليوم'}</td>
       <td>${r.time || 'مساءً'}</td>
       <td>
-        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#25d366;">
+        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#c59d27;">
           <i class="fa-brands fa-whatsapp"></i> تواصل
         </a>
       </td>
@@ -807,7 +807,7 @@ function renderReservationsTable(list) {
       <td>${r.time || 'مساءً'}</td>
       <td style="max-width:240px; font-size:12.5px; color:#475569;">${r.notes || '-'}</td>
       <td>
-        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#25d366;">
+        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#c59d27;">
           <i class="fa-brands fa-whatsapp"></i> رد
         </a>
       </td>
