@@ -1,7 +1,10 @@
 /**
- * Qasr Al-Diyafa Restaurant Executive Admin Engine
- * PIN protected (default: 1234)
- * Full CRUD for Dishes, Categories, Pages, Image Upload (Base64 file upload + URL), and Live Sync
+ * Qasr Al-Diyafa Full Admin Control Panel Engine
+ * - Full Categories CRUD (Add, Edit, Delete, Slug, Real Modals)
+ * - Full Dishes CRUD with Device Image Upload
+ * - Full Pages Content Editors (Home, Menu, About Us, Reservation, Contact)
+ * - Save and Cancel for every page
+ * - Live Client-Side Sync
  */
 
 const DEFAULT_DATA = {
@@ -11,228 +14,177 @@ const DEFAULT_DATA = {
     "enName": "QASR AL-DIYAFA LUXURY ARABIAN RESTAURANT",
     "tagline": "روائع الطهي العربي الأصيل والولائم الملكية",
     "phone": "01027093535",
-    "phoneDisplay": "+966 50 123 4567 / 01027093535",
     "whatsapp": "01027093535",
     "whatsappFormatted": "201027093535",
     "email": "booking@qasr-aldiyafa.com",
     "currency": "ر.س",
     "address": "طريق الملك فهد، حي المروج، الرياض، المملكة العربية السعودية",
-    "branches": "الرياض: طريق الملك فهد | جدة: طريق الكورنيش | القاهرة: التجمع الخامس، شارع التسعين",
     "workingHours": "يومياً من الساعة 12:00 ظهراً وحتى 01:30 بعد منتصف الليل",
     "adminPin": "1234"
   },
   "categories": [
-    {
-      "id": "all",
-      "slug": "all",
-      "name": "كل الأصناف الملكية",
-      "badge": "المائدة الملكية الكاملة"
-    },
-    {
-      "id": "grills",
-      "slug": "grills",
-      "name": "مشويات وولائم عربية",
-      "badge": "على الفحم والحطب"
-    },
-    {
-      "id": "mains",
-      "slug": "mains",
-      "name": "كبسات وطواجن أصيلة",
-      "badge": "مطهوة ببطء في الفخار"
-    },
-    {
-      "id": "desserts",
-      "slug": "desserts",
-      "name": "حلويات وضيافة شرقية",
-      "badge": "بالعسل والسمن الفلاحي"
-    },
-    {
-      "id": "salads",
-      "slug": "salads",
-      "name": "مقبلات وشوربات عربية",
-      "badge": "طازجة ومحضرة يومياً"
-    }
+    { "id": "all", "slug": "all", "name": "كل الأصناف الملكية", "badge": "المائدة الملكية الكاملة" },
+    { "id": "grills", "slug": "grills", "name": "مشويات وولائم عربية", "badge": "على الفحم والحطب" },
+    { "id": "mains", "slug": "mains", "name": "كبسات وطواجن أصيلة", "badge": "مطهوة ببطء في الفخار" },
+    { "id": "desserts", "slug": "desserts", "name": "حلويات وضيافة شرقية", "badge": "بالعسل والسمن الفلاحي" },
+    { "id": "salads", "slug": "salads", "name": "مقبلات وشوربات عربية", "badge": "طازجة ومحضرة يومياً" }
   ],
   "dishes": [
     {
       "id": 1,
-      "name": "ريش ضأن نعيمي مشوية على الفحم",
       "cat": "grills",
-      "catName": "مشويات",
+      "catName": "مشويات وولائم عربية",
+      "name": "ريش ضأن مشوية على الفحم",
       "price": 145,
       "oldPrice": 175,
-      "badge": "اختيار الشيف",
-      "badgeIcon": "fa-solid fa-crown",
+      "badge": "الأكثر طلباً",
+      "badgeIcon": "fa-solid fa-fire",
       "image": "images/lamb_chops.jpg",
-      "desc": "ريش غنم نعيمي طازجة متبلة بالبهارات النجدية وزيت الزيتون، مشوية على الفحم الطبيعي مع البصل المشوي.",
-      "inclusions": "ريش ضأن نعيمي بلدي، بصل مشوي، طماطم مشوية، خبز صاج ساخن، صوص ثومية وطحينة",
-      "rating": 5,
-      "featured": true
+      "desc": "ريش غنم نعيمي بلدي متبلة بالزعفران والبهارات النجدية ومشوية على نار هادئة.",
+      "inclusions": "أرز بسمتي عنبر، طحينة بالسمسم، ثومية بلدية، سلطة خضراء، خبز تنور طازج"
     },
     {
       "id": 2,
-      "name": "كباب حاتي مشوي بالخلطة السرية",
       "cat": "grills",
-      "catName": "مشويات",
-      "price": 120,
-      "oldPrice": 140,
-      "badge": "الأكثر طلباً",
-      "badgeIcon": "fa-solid fa-fire",
+      "catName": "مشويات وولائم عربية",
+      "name": "كفتة قصر الضيافة المشوية",
+      "price": 95,
+      "oldPrice": 115,
+      "badge": "وصفة الشيف",
+      "badgeIcon": "fa-solid fa-crown",
       "image": "images/kofta.jpg",
-      "desc": "لحم بلدي مفروم مع التوابل الشرقية ودهن اللية، مشوي على السيخ ويُقدم مع سلطة الطحينة الحارة وخبز الصاج.",
-      "inclusions": "لحم بلدي طازج، بهارات شرقية حاتية، سلطة طحينة، بقدونس وبصل بالسماق",
-      "rating": 5,
-      "featured": true
+      "desc": "لحم بقري بلدي مفروم مع دهن الضأن والبصل المشوي والبهارات الحلبية الفاخرة.",
+      "inclusions": "أرز زعفران، خضار مشوية، بطاطس ويدجز مبهرة، صلصة دقوس حارة"
     },
     {
       "id": 3,
-      "name": "أوصال لحم تيس بلدي مدخن على الحطب",
       "cat": "grills",
-      "catName": "مشويات",
-      "price": 135,
-      "oldPrice": 160,
-      "badge": "تحضير خاص",
-      "badgeIcon": "fa-solid fa-award",
+      "catName": "مشويات وولائم عربية",
+      "name": "لحم مدخن على خشب البلوط",
+      "price": 185,
+      "oldPrice": 220,
+      "badge": "إصدار ملكي VIP",
+      "badgeIcon": "fa-solid fa-gem",
       "image": "images/smoked_meat.jpg",
-      "desc": "قطع لحم طرية متبلة بماء الورد والهيل العماني، مشوية ببطء ومقدمة مع الفلفل المشوي والليمون المعتق.",
-      "inclusions": "لحم تيس بلدي مدخن، هيل نيبالي، ماء ورد جبلي، صوص دبس رمان مدخن",
-      "rating": 5,
-      "featured": true
+      "desc": "ضلوع بقرية مدخنة لمدة 14 ساعة بنكهة الحطب الطبيعي والصلصة الخاصة.",
+      "inclusions": "سلطة كولسلو بالعسل، صوص باربكيو مدخن، مخللات شامية، ذرة مشوية"
     },
     {
       "id": 4,
-      "name": "مندي لحم نعيمي بالزعفران الملكي",
       "cat": "mains",
-      "catName": "كبسات وطواجن",
-      "price": 165,
-      "oldPrice": 195,
-      "badge": "وليمة ملكية",
-      "badgeIcon": "fa-solid fa-crown",
+      "catName": "كبسات وطواجن أصيلة",
+      "name": "مندي لحم تيس بلدي بالحطب",
+      "price": 160,
+      "oldPrice": 190,
+      "badge": "تراث أصيل",
+      "badgeIcon": "fa-solid fa-star",
       "image": "images/mandi.jpg",
-      "desc": "لحم غنم ندي طازج مطهو في حفرة المندي بالحطب، يُقدم فوق أرز بسمتي بالزعفران والمكسرات الذهبية المقرمشة.",
-      "inclusions": "لحم نعيمي بلدي، أرز بسمتي عنبر، زعفران إيراني فاخر، لوز وكاجو وصنوبر، صوص الدقوس الحار",
-      "rating": 5,
-      "featured": true
+      "desc": "لحم تيس طازج مطهو في برميل الفخار تحت الأرض على حرارة جمر السمر الطبيعي.",
+      "inclusions": "أرز بشاور هندي، كشنة بصل وزبيب، صوص حار، مرق لحم غني، لبن بالنعناع"
     },
     {
       "id": 5,
-      "name": "طاجن عكّاوي وموزات بالبصل القاورمة",
       "cat": "mains",
-      "catName": "كبسات وطواجن",
-      "price": 150,
-      "oldPrice": 180,
-      "badge": "وصفة تراثية",
-      "badgeIcon": "fa-solid fa-fire",
+      "catName": "كبسات وطواجن أصيلة",
+      "name": "طاجن عكاوي بالبصل القاورمة",
+      "price": 130,
+      "oldPrice": 155,
+      "badge": "فخاريات بلدي",
+      "badgeIcon": "fa-solid fa-fire-burner",
       "image": "images/tajin.jpg",
-      "desc": "طاجن فخاري مصري أصيل غني بقطع العكّاوي المطهوة على نار هادئة مع صوص البصل المكرمل وجوزة الطيب والمستكة.",
-      "inclusions": "عكّاوي بقري بلدي، بصل قاورمة مكرمل، فخار صعيدي أصلي، صوص مسبك، خبز بلدي ساخن",
-      "rating": 5,
-      "featured": true
+      "desc": "عكاوي بقري مسبكة في الطاجن الفخاري مع البصل الصغير وجوزة الطيب والسمن البلدي.",
+      "inclusions": "أرز مصري بالشعرية، طرشي بلدي، خبز بلدي ساخن، ملوخية طازجة بالطشة"
     },
     {
       "id": 6,
-      "name": "شوا عماني تقليدي ببهارات ظفار",
       "cat": "mains",
-      "catName": "كبسات وطواجن",
-      "price": 170,
+      "catName": "كبسات وطواجن أصيلة",
+      "name": "شواء عماني أصيل بالتنور",
+      "price": 175,
       "oldPrice": 210,
-      "badge": "بهارات ظفار",
+      "badge": "وليمة ظفارية",
       "badgeIcon": "fa-solid fa-award",
       "image": "images/omani_shuwa.jpg",
-      "desc": "لحم مطهو تحت الأرض لمدة 24 ساعة مغلفاً بخيش النخيل ومتبلاً بالخل العماني الحامض والفلفل والثوم المعمر.",
-      "inclusions": "لحم تيس عماني تقليدي، تتبيلة شواء ظفارية، أرز زعفران، لومي صحاري، صوص التمر الهندي",
-      "rating": 5,
-      "featured": true
+      "desc": "لحم مدفون بورق الموز والتوابل الظفارية المعتقة ومطهو لمدة 24 ساعة في تنور أرضي.",
+      "inclusions": "أرز قبولي عماني، سلطة حمص ناعمة، صوص تمر هندي متبل، خبز عماني رقاق"
     },
     {
       "id": 7,
-      "name": "كنافة نابلسية بالقشطة والفستق",
       "cat": "desserts",
-      "catName": "حلويات",
+      "catName": "حلويات وضيافة شرقية",
+      "name": "كنافة نابلسية بالجبنة البلدية",
       "price": 55,
       "oldPrice": 70,
-      "badge": "سمن فلاحي",
-      "badgeIcon": "fa-solid fa-crown",
+      "badge": "طازجة ساخنة",
+      "badgeIcon": "fa-solid fa-heart",
       "image": "images/kunafa.jpg",
-      "desc": "شعيرات الكنافة الذهبية المقرمشة المحضرة بالسمن البلدي الفلاحي، محشوة بقشطة طازجة ومسقية بشربات الزهر الخفيف.",
-      "inclusions": "كنافة طازجة، سمن بلدي فلاحي، قشطة عربية غنية، شربات زهر البرتقال، فستق حلبي مدقوق",
-      "rating": 5,
-      "featured": true
+      "desc": "كنافة خشنة محشوة بجبن العكاوي الفاخر ومسقية بالقطر المعطر بماء الورد والفستق الحلبي.",
+      "inclusions": "فستق حلبي محمص، شيرة عسل نحل نقية، قشطة بلدي طازجة"
     },
     {
       "id": 8,
-      "name": "الحلوى العمانية السلطانية بالزعفران",
       "cat": "desserts",
-      "catName": "حلويات",
+      "catName": "حلويات وضيافة شرقية",
+      "name": "حلوى عمانية بالزعفران والهيل",
       "price": 65,
       "oldPrice": 80,
-      "badge": "ضيافة سلطانية",
-      "badgeIcon": "fa-solid fa-award",
+      "badge": "ضيافة ملكية",
+      "badgeIcon": "fa-solid fa-crown",
       "image": "images/omani_halwa.jpg",
-      "desc": "الحلوى العمانية التقليدية الفاخرة المحضرة بماء الورد الجبلي، الهيل النيبالي، الزعفران الإيراني والمكسرات المحمصة.",
-      "inclusions": "حلوى سلطانية بالزعفران، ماء ورد الجبل الأخضر، هيل نيبالي، لوز وجوز محمص، تُقدم مع القهوة العربية",
-      "rating": 5,
-      "featured": true
+      "desc": "مطبوخة على نار هادئة في قدور النحاس بالسمن العماني والزعفران الإيراني الفاخر والمكسرات.",
+      "inclusions": "دلة قهوة عربية بالهيل، تمر خلاص فاخر، كاجو ولوز محمص"
     },
     {
       "id": 9,
-      "name": "معصوب ملكي بالعسل والقشطة والتمر",
       "cat": "desserts",
-      "catName": "حلويات",
-      "price": 50,
-      "oldPrice": 65,
-      "badge": "تراث حجازي",
-      "badgeIcon": "fa-solid fa-fire",
+      "catName": "حلويات وضيافة شرقية",
+      "name": "معصوب ملكي بالقشطة والعسل",
+      "price": 45,
+      "oldPrice": 60,
+      "badge": "الأكثر حباً",
+      "badgeIcon": "fa-solid fa-thumbs-up",
       "image": "images/masoub.jpg",
-      "desc": "موز مهروس مع خبز الفطير الأسمر الساخن، تعلوه طبقات القشطة وعسل السدر الجبلي الطبيعي وحبات اللوز المقرمش.",
-      "inclusions": "فطير بر أسمر، موز بلدي ناضج، قشطة طازجة، عسل سدر دوعني حر، لوز محمص، حبة بركة",
-      "rating": 5,
-      "featured": true
+      "desc": "فطير بر مخبوز ومفروم مع الموز الطازج ومغطى بطبقة وفيرة من القشطة وعسل السدر الطبيعي.",
+      "inclusions": "حبة سوداء، جبنة شيدر مبشورة، كورن فليكس مقرمش، مكسرات"
     },
     {
       "id": 10,
-      "name": "سلطة فتوش بدبس الرمان والخبز المقرمش",
       "cat": "salads",
-      "catName": "مقبلات وسلطات",
-      "price": 40,
-      "oldPrice": 50,
-      "badge": "طازج 100%",
+      "catName": "مقبلات وشوربات عربية",
+      "name": "فتوش شامي بدبس الرمان",
+      "price": 35,
+      "oldPrice": 45,
+      "badge": "طازج يومياً",
       "badgeIcon": "fa-solid fa-leaf",
       "image": "images/fattoush.jpg",
-      "desc": "خضار موسمية طازجة مع أوراق النعناع والجرجير، حبوب الرمان الحامضة، والخبز المحمص مع تتبيلة دبس الرمان الفاخرة.",
-      "inclusions": "خيار، طماطم كرزية، خس روماني، نعناع طازج، سماق بلدي، دبس رمان معتق، زيت زيتون بكر",
-      "rating": 5,
-      "featured": true
+      "desc": "خضروات طازجة مع الخبز المحمص المقرمش والسماق البلدي وزيت الزيتون البكر ودبس الرمان الجبلي.",
+      "inclusions": "صوص دبس الرمان، حبوب رمان طازجة، نعناع بري أخضر"
     },
     {
       "id": 11,
-      "name": "طحينة ومتبل باذنجان مشوي على الفحم",
       "cat": "salads",
-      "catName": "مقبلات وسلطات",
+      "catName": "مقبلات وشوربات عربية",
+      "name": "متبل باذنجان مشوي بالرمان",
       "price": 38,
       "oldPrice": 48,
-      "badge": "نكهة أصيلة",
-      "badgeIcon": "fa-solid fa-crown",
+      "badge": "مقبلات فاخرة",
+      "badgeIcon": "fa-solid fa-utensils",
       "image": "images/mutabbal.jpg",
-      "desc": "باذنجان رومي مشوي على الفحم الطبيعي مهروس مع الطحينة السمراء وعصير الليمون، يعلوه زيت زيتون بكر ممتاز.",
-      "inclusions": "باذنجان مدخن، طحينة سمسم صافية، ثوم، ليمون، زيت زيتون بكر معصور على البارد، حبات رمان",
-      "rating": 5,
-      "featured": true
+      "desc": "باذنجان رومي مدخن على اللهب ومهروس مع الطحينة السمراء وزيت الزيتون الفلسطيني وفصوص الرمان.",
+      "inclusions": "زيت زيتون بكر معصور على البارد، خبز عربي دافئ، مخللات مشكلة"
     },
     {
       "id": 12,
-      "name": "شوربة كوارع وموزات بالليمون والمستكة",
       "cat": "salads",
-      "catName": "مقبلات وسلطات",
-      "price": 45,
+      "catName": "مقبلات وشوربات عربية",
+      "name": "شوربة كوارع مخلية بالليمون",
+      "price": 48,
       "oldPrice": 60,
-      "badge": "غنية ومغذية",
-      "badgeIcon": "fa-solid fa-fire",
+      "badge": "مغذية وشهية",
+      "badgeIcon": "fa-solid fa-bowl-food",
       "image": "images/soup.jpg",
-      "desc": "مرقة غنية ومغذية مستخلصة على نار هادئة، بنكهة المستكة وحبات الهيل وثوم الطشة المحمر والخبز البلدي المقرمش.",
-      "inclusions": "مرق كوارع وموزات ضأن، مستكة يونانية، طشة ثوم وكزبرة، ليمون أضاليا، خبز مقرمش",
-      "rating": 5,
-      "featured": true
+      "desc": "مرق كوارع بلدي صافي غني بالبهارات المستكة والحبهان ومخلى بالكامل مع شرائح الليمون الأخضر.",
+      "inclusions": "خبز محمص مقرمش، أرز أبيض جانبي، صلصة طماطم بالخل والثوم"
     }
   ],
   "pages": {
@@ -240,23 +192,13 @@ const DEFAULT_DATA = {
       "heroTitle": "روائع الطهي العربي الأصيل والولائم الملكية",
       "heroDesc": "نأخذكم في رحلة إلى عوالم النكهات التراثية المطهوة على أصولها، من أشهى الكبسات النجدية والمندي والمشويات الفاخرة إلى الطواجن الفخارية والحلويات الشرقية العريقة.",
       "heroImg": "images/hero_slide1.jpg",
-      "heroBadgeTitle": "ولائم ملكية خاصة",
-      "heroBadgeSub": "أفخم مجالس الضيافة العربية",
       "storyTitle": "أصالة الطهي العربي وتراث الموائد العريقة",
-      "storyP1": "في قصر الضيافة، لا نقدم مجرد وجبات، بل نعيد إحياء فنون الطهي العربي المتوارثة عبر الأجيال. ننتقي لحومنا النعيمية والبلدية الطازجة بعناية فائقة، ونطهوها باستخدام التوابل الأصلية المحمصة وحطب السمر الطبيعي ليخرج كل طبق بعبق الأصالة والفخامة.",
-      "storyP2": "سواء كنت تخطط لوليمة عائلية دافئة، عشاء عمل فاخر، أو مناسبة احتفالية خاصة في مجالسنا التراثية الملكية، نعدك بتجربة ضيافة استثنائية تحاكي كرم الضيافة العربية الأصيلة في أبهى صورها."
+      "storyDesc": "منذ بدايتنا ونحن نلتزم بفلسفة كرم الضيافة الأصيلة: استخدام أجود اللحوم النعيمية والمكونات البلدية الطازجة، وإحياء فنون الطبخ العربي المتوارثة من كبسات ومندي الخليج الفاخرة إلى أشهى الطواجن المصرية والشوا العماني الأصيل."
     },
     "menu": {
       "heroTitle": "قائمة المأكولات والولائم الفاخرة",
       "heroSubtitle": "نقدم لكم تشكيلة ملكية من أرقى أطباق اللحوم البلدية والمشويات والطواجن والحلويات الشرقية المعدة بحرفية تامة.",
       "heroImg": "images/hero_slide2.jpg"
-    },
-    "reservation": {
-      "heroTitle": "حجز مائدة مسبق وولائم خاصة",
-      "heroSubtitle": "احجز طاولتك أو مجلسك الملكي المفضل مسبقاً لضمان أفضل تجربة ضيافة لك ولعائلتك وضيوفك الكرام في أجواء تراثية مريحة وراقية.",
-      "heroImg": "images/hero_slide1.jpg",
-      "boxTitle": "استمارة حجز مائدة مسبق",
-      "boxDesc": "املأ بياناتك وسيصلك تأكيد فوري عبر الواتساب والرسائل النصية خلال دقائق معدودة لتجهيز مائدتك على أكمل وجه."
     },
     "about": {
       "heroTitle": "قصة مطعم قصر الضيافة",
@@ -265,6 +207,13 @@ const DEFAULT_DATA = {
       "storyP1": "انطلقت رحلتنا من إيمان راسخ بأن المطبخ العربي هو أحد أثرى مطابخ العالم في التنوع والعمق والتاريخ. من أودية ظفار إلى نجد العذية، ومن صعيد مصر الخالد إلى شواطئ الخليج، جمعنا لكم نخبة من أمهر الطهاة وحفظة الوصفات التراثية.",
       "storyP2": "نلتزم بأعلى معايير الجودة الغذائية، مستخدمين أجود الذبائح البلدية الطازجة والسمن الفلاحي النقي وزيت الزيتون المعصور على البارد، لنقدم لأحبائنا وضيوفنا ولائم تليق بمقامهم الرفيع.",
       "image": "images/story_dish1.jpg"
+    },
+    "reservation": {
+      "heroTitle": "حجز مائدة مسبق وولائم خاصة",
+      "heroSubtitle": "احجز طاولتك أو مجلسك الملكي المفضل مسبقاً لضمان أفضل تجربة ضيافة لك ولعائلتك وضيوفك الكرام في أجواء تراثية مريحة وراقية.",
+      "heroImg": "images/hero_slide1.jpg",
+      "boxTitle": "استمارة حجز مائدة مسبق",
+      "boxDesc": "املأ بياناتك وسيصلك تأكيد فوري عبر الواتساب والرسائل النصية خلال دقائق معدودة لتجهيز مائدتك على أكمل وجه."
     },
     "contact": {
       "heroTitle": "تواصل مع قصر الضيافة",
@@ -279,18 +228,12 @@ const DEFAULT_DATA = {
 };
 
 let appData = null;
-let currentEditingDishId = null;
 
-// 1. INITIALIZATION
+// ==========================================================================
+// 1. INITIALIZATION & AUTH
+// ==========================================================================
 function initData() {
-  const local = localStorage.getItem('qasr_data');
-  if (local) {
-    try {
-      appData = JSON.parse(local);
-    } catch(e) {
-      console.error('Error parsing local qasr_data:', e);
-    }
-  }
+  loadAppData();
 
   if (!appData || !Array.isArray(appData.dishes) || appData.dishes.length === 0) {
     appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -304,7 +247,6 @@ function initData() {
   checkAuth();
 }
 
-// 2. AUTHENTICATION
 function checkAuth() {
   const authed = sessionStorage.getItem('qasr_admin_authed');
   const authScreen = document.getElementById('authScreen');
@@ -331,10 +273,9 @@ function handleAuth(e) {
     renderDashboard();
     showToast('تم تسجيل الدخول بنجاح، مرحباً بك في لوحة تحكم قصر الضيافة!');
   } else {
-    const err = document.getElementById('authError');
-    err.style.display = 'block';
+    document.getElementById('authError').style.display = 'block';
     document.getElementById('pinInput').value = '';
-    setTimeout(() => { err.style.display = 'none'; }, 4000);
+    document.getElementById('pinInput').focus();
   }
 }
 
@@ -343,46 +284,51 @@ function logoutAdmin() {
   window.location.reload();
 }
 
-function toggleSidebar() {
-  const sb = document.getElementById('adminSidebar');
-  if (sb) sb.classList.toggle('open');
-}
-
-// 3. TAB CONTROLLER
-function switchTab(tabId, btn) {
-  document.querySelectorAll('.admin-tab-pane').forEach(p => p.style.display = 'none');
+// ==========================================================================
+// 2. TABS NAVIGATION & UI
+// ==========================================================================
+function switchTab(tabId, clickedEl) {
+  document.querySelectorAll('.admin-tab-pane').forEach(el => el.style.display = 'none');
   const target = document.getElementById(tabId);
   if (target) target.style.display = 'block';
 
-  if (btn) {
-    document.querySelectorAll('.sidebar-menu .menu-link').forEach(l => l.classList.remove('active'));
-    btn.classList.add('active');
-  }
+  document.querySelectorAll('.sidebar-menu .menu-link').forEach(l => l.classList.remove('active'));
+  if (clickedEl) clickedEl.classList.add('active');
 
+  // Update Main Header Title
   const titles = {
-    'tabOverview': 'نظرة عامة وإحصائيات المطعم',
-    'tabDishes': 'إدارة وتحديث أصناف المنيو',
-    'tabCategories': 'أقسام وتصنيفات المأكولات',
-    'tabPages': 'محرر وتعديل محتوى الصفحات والبانرات والصور',
-    'tabReservations': 'سجل طلبات الحجز والاستفسارات',
-    'tabCMS': 'إعدادات المطعم العامة وبيانات التواصل',
+    'tabOverview': 'لوحة الإحصائيات العامة',
+    'tabDishes': 'قائمة الطعام والأطباق',
+    'tabCategories': 'إدارة أقسام المنيو والتصنيفات',
+    'tabHomeEditor': 'تعديل الصفحة الرئيسية (Home)',
+    'tabAboutEditor': 'تعديل قصة قصر الضيافة (من نحن)',
+    'tabMenuEditor': 'تعديل صفحة قائمة الطعام (Menu)',
+    'tabReservationEditor': 'تعديل صفحة حجز طاولة وولائم',
+    'tabContactEditor': 'تعديل صفحة اتصل بنا والموقع',
+    'tabReservations': 'سجل الحجوزات والطلبات',
+    'tabCMS': 'بيانات المطعم والتواصل',
     'tabBackup': 'النسخ الاحتياطي واستعادة البيانات'
   };
-  document.getElementById('headerTitle').textContent = titles[tabId] || 'لوحة التحكم الشاملة';
+  const titleEl = document.getElementById('pageMainHeaderTitle');
+  if (titleEl && titles[tabId]) titleEl.textContent = titles[tabId];
 
-  const sb = document.getElementById('adminSidebar');
-  if (sb && window.innerWidth <= 900) sb.classList.remove('open');
+  // Populate form if switching to page editors
+  populateAllPagesForms();
 }
 
-// 4. TOAST NOTIFIER
 function showToast(msg) {
-  const t = document.getElementById('adminToast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.style.display = 'flex';
-  setTimeout(() => { t.style.display = 'none'; }, 3500);
+  const toast = document.getElementById('adminToast');
+  const txt = document.getElementById('toastMsg');
+  if (toast && txt) {
+    txt.textContent = msg;
+    toast.classList.add('active');
+    setTimeout(() => { toast.classList.remove('active'); }, 3000);
+  }
 }
 
-// 5. RENDER DASHBOARD
+// ==========================================================================
+// 3. DASHBOARD RENDERING
+// ==========================================================================
 function renderDashboard() {
   if (!appData) return;
 
@@ -390,7 +336,6 @@ function renderDashboard() {
   const categories = appData.categories || [];
   const reservations = getStoredReservations();
 
-  // Update Stats
   document.getElementById('statDishesCount').textContent = dishes.length;
   document.getElementById('statCatsCount').textContent = categories.length;
   document.getElementById('statResCount').textContent = reservations.length;
@@ -399,154 +344,149 @@ function renderDashboard() {
   }
 
   populateCategorySelect();
-  renderOverviewReservations(reservations);
   renderDishesTable(dishes);
   renderCategoriesTable(categories);
   renderReservationsTable(reservations);
-  populatePagesForm();
-  populateCMSForm();
-}
-
-function populateCategorySelect() {
-  const sel = document.getElementById('modalDishCat');
-  if (!sel || !appData || !appData.categories) return;
-  const cats = appData.categories.filter(c => c.slug !== 'all');
-  sel.innerHTML = cats.map(c => `<option value="${c.slug}">${c.name}</option>`).join('');
+  populateAllPagesForms();
+  populateGeneralSettings();
 }
 
 function getStoredReservations() {
   try {
-    const raw = localStorage.getItem('qasr_reservations');
-    return raw ? JSON.parse(raw) : [
-      { id: 1, name: 'سلطان القحطاني', phone: '0501234567', guests: 'وليمة عائلية (12 شخصاً)', date: '2026-10-25', time: '02:30 ظهراً', notes: 'خروف مندي نعيمي كامل في المجلس الملكي' },
-      { id: 2, name: 'فهد المطيري', phone: '0559876543', guests: '4 أشخاص', date: '2026-10-24', time: '08:30 مساءً', notes: 'طاولة vip عائلية مع بارتشن' }
-    ];
+    const raw = localStorage.getItem('qasr_reservations_data') || localStorage.getItem('qasr_reservations');
+    return raw ? JSON.parse(raw) : [];
   } catch(e) {
     return [];
   }
 }
 
-function renderOverviewReservations(list) {
-  const tbody = document.getElementById('overviewRecentReservations');
+function renderReservationsTable(list) {
+  const tbody = document.getElementById('reservationsTableBody');
   if (!tbody) return;
-  if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding:24px;">لا توجد طلبات حجز مسجلة حتى الآن</td></tr>';
+  if (list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px; color:#94a3b8;">لا توجد أي طلبات حجز حالياً.</td></tr>';
     return;
   }
-
-  const wa = (appData.restaurantInfo && appData.restaurantInfo.whatsappFormatted) ? appData.restaurantInfo.whatsappFormatted : '201027093535';
-
-  tbody.innerHTML = list.slice(0, 5).map((r, idx) => `
+  tbody.innerHTML = list.map((r, i) => `
     <tr>
-      <td>${idx + 1}</td>
-      <td style="font-weight:800;">${r.name}</td>
-      <td><a href="tel:${r.phone}" style="color:var(--primary); font-weight:700; text-decoration:none;">${r.phone}</a></td>
-      <td><span class="badge badge-primary">${r.guests || r.type || 'طاولة عائلية'}</span></td>
-      <td>${r.date || 'اليوم'}</td>
-      <td>${r.time || 'مساءً'}</td>
-      <td>
-        <a href="https://wa.me/${wa}?text=مرحباً%20${encodeURIComponent(r.name)}،%20يسعدنا%20خدمتكم%20في%20مطعم%20قصر%20الضيافة" target="_blank" class="btn btn-outline btn-sm" style="color:#c59d27;">
-          <i class="fa-brands fa-whatsapp"></i> تواصل
-        </a>
-      </td>
+      <td>${i + 1}</td>
+      <td style="font-weight:800; color:#fff;">${r.name || 'عميل'}</td>
+      <td><a href="https://wa.me/${(r.phone || '').replace(/[^0-9]/g, '')}" target="_blank" style="color:#c59d27; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i> ${r.phone}</a></td>
+      <td><span class="badge badge-primary">${r.guests || 'طاولة'}</span></td>
+      <td>${r.date || '-'}</td>
+      <td>${r.time || '-'}</td>
+      <td>${r.seating || 'مجلس عام'}</td>
+      <td style="font-size:13px; color:#cbd5e1;">${r.notes || '-'}</td>
     </tr>
   `).join('');
 }
 
-// 6. DISHES MANAGER
+// ==========================================================================
+// 4. DISHES CRUD & IMAGE UPLOAD
+// ==========================================================================
+function populateCategorySelect() {
+  const sel = document.getElementById('modalDishCat');
+  const filterSel = document.getElementById('adminDishCatFilter');
+  if (!appData || !appData.categories) return;
+
+  const options = appData.categories
+    .filter(c => c.slug !== 'all')
+    .map(c => `<option value="${c.slug}">${c.name}</option>`)
+    .join('');
+
+  if (sel) sel.innerHTML = options;
+  if (filterSel) {
+    filterSel.innerHTML = '<option value="all">كل الأقسام والتصنيفات</option>' +
+      appData.categories.filter(c => c.slug !== 'all').map(c => `<option value="${c.slug}">${c.name}</option>`).join('');
+  }
+}
+
 function renderDishesTable(dishes) {
   const tbody = document.getElementById('dishesTableBody');
   if (!tbody) return;
-  if (!dishes.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:28px; color:#94a3b8;">لا توجد أصناف مسجلة. اضغط "إضافة صنف جديد" بالأعلى!</td></tr>';
+  if (dishes.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:#94a3b8;">لا توجد أطباق مسجلة.</td></tr>';
     return;
   }
-
   tbody.innerHTML = dishes.map(d => {
     const imgSrc = d.image.startsWith('data:') ? d.image : (d.image.startsWith('http') ? d.image : `../${d.image}`);
     return `
     <tr>
-      <td><img src="${imgSrc}" alt="${d.name}" class="dish-thumb" onerror="this.src='../images/mandi.jpg'"></td>
-      <td style="font-weight:800; max-width:240px; line-height:1.4;">${d.name}</td>
+      <td><img src="${imgSrc}" class="dish-img-thumb" alt="${d.name}" onerror="this.src='../images/mandi.jpg'"></td>
+      <td>
+        <div style="font-weight:800; color:#ffffff; font-size:14.5px;">${d.name}</div>
+        <div style="font-size:12px; color:#94a3b8; max-width:280px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${d.desc || ''}</div>
+      </td>
       <td><span class="badge badge-primary">${d.catName || d.cat}</span></td>
-      <td style="font-weight:900; color:#c59d27; font-size:15px; white-space:nowrap;">
-        ${Number(d.price).toLocaleString('en-US')} ر.س
-        ${d.oldPrice ? `<div style="font-size:11.5px; color:#94a3b8; text-decoration:line-through;">${Number(d.oldPrice).toLocaleString('en-US')} ر.س</div>` : ''}
-      </td>
-      <td><span class="badge badge-warning">${d.badge || 'مميز'}</span></td>
+      <td style="font-weight:900; color:#c59d27;">${d.price} ر.س</td>
+      <td style="color:#94a3b8; text-decoration:line-through;">${d.oldPrice ? d.oldPrice + ' ر.س' : '-'}</td>
+      <td><span class="badge badge-primary"><i class="${d.badgeIcon || 'fa-solid fa-crown'}"></i> ${d.badge || 'مميز'}</span></td>
       <td>
-        <input type="checkbox" style="cursor:pointer; transform:scale(1.2);" ${d.featured !== false ? 'checked' : ''} onchange="toggleDishFeatured(${d.id}, this.checked)" title="تفعيل في الصفحة الرئيسية">
-      </td>
-      <td>
-        <div style="display:flex; gap:6px;">
-          <button class="btn btn-outline btn-sm" onclick="editDish(${d.id})" title="تعديل"><i class="fa-solid fa-pen-to-square"></i></button>
-          <button class="btn btn-danger btn-sm" onclick="deleteDish(${d.id})" title="حذف"><i class="fa-solid fa-trash"></i></button>
-          <a href="../dish-detail.html?id=${d.id}" target="_blank" class="btn btn-outline btn-sm" title="معاينة"><i class="fa-solid fa-eye"></i></a>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="editDish(${d.id})"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>
+          <button type="button" class="btn btn-danger btn-sm" onclick="deleteDish(${d.id})"><i class="fa-solid fa-trash"></i> حذف</button>
         </div>
       </td>
     </tr>
-  `}).join('');
+    `;
+  }).join('');
 }
 
 function filterAdminDishes() {
-  const q = document.getElementById('dishSearchInput').value.toLowerCase().trim();
-  const dishes = appData.dishes || [];
-  const filtered = dishes.filter(d => (d.name && d.name.toLowerCase().includes(q)) || (d.catName && d.catName.toLowerCase().includes(q)));
+  const q = document.getElementById('adminDishSearch').value.trim().toLowerCase();
+  const cat = document.getElementById('adminDishCatFilter').value;
+  let filtered = appData.dishes || [];
+
+  if (cat !== 'all') {
+    filtered = filtered.filter(d => d.cat === cat);
+  }
+  if (q) {
+    filtered = filtered.filter(d => d.name.toLowerCase().includes(q) || (d.desc && d.desc.toLowerCase().includes(q)));
+  }
   renderDishesTable(filtered);
 }
 
-function toggleDishFeatured(dishId, isFeatured) {
-  const dish = appData.dishes.find(d => d.id === dishId);
-  if (dish) {
-    dish.featured = isFeatured;
-    saveAppData();
-    showToast('تم تحديث حالة الظهور في الصفحة الرئيسية');
-  }
-}
-
 function openAddDishModal() {
-  currentEditingDishId = null;
-  document.getElementById('dishModalTitle').textContent = 'إضافة صنف جديد لقائمة المأكولات';
-  document.getElementById('dishForm').reset();
+  document.getElementById('dishModalTitle').textContent = 'إضافة طبق جديد للمنيو';
   document.getElementById('modalDishId').value = '';
-  document.getElementById('modalDishImgPreview').style.display = 'none';
-  populateCategorySelect();
-  document.getElementById('dishModal').style.display = 'flex';
+  document.getElementById('modalDishName').value = '';
+  document.getElementById('modalDishPrice').value = '';
+  document.getElementById('modalDishOldPrice').value = '';
+  document.getElementById('modalDishBadge').value = 'اختيار الشيف';
+  document.getElementById('modalDishImage').value = 'images/mandi.jpg';
+  document.getElementById('modalDishInclusions').value = '';
+  document.getElementById('modalDishDesc').value = '';
+  updateDishImgPreview('images/mandi.jpg');
+  document.getElementById('dishModal').classList.add('active');
 }
 
 function editDish(id) {
-  const dish = appData.dishes.find(d => d.id === id);
+  const dish = (appData.dishes || []).find(d => d.id === id);
   if (!dish) return;
-  currentEditingDishId = id;
-  populateCategorySelect();
-
-  document.getElementById('dishModalTitle').textContent = 'تعديل الصنف: ' + dish.name;
+  document.getElementById('dishModalTitle').textContent = 'تعديل طبق: ' + dish.name;
   document.getElementById('modalDishId').value = dish.id;
   document.getElementById('modalDishName').value = dish.name;
   document.getElementById('modalDishCat').value = dish.cat;
   document.getElementById('modalDishPrice').value = dish.price;
   document.getElementById('modalDishOldPrice').value = dish.oldPrice || '';
-  document.getElementById('modalDishBadge').value = dish.badge || '';
-  document.getElementById('modalDishImage').value = dish.image;
+  document.getElementById('modalDishBadge').value = dish.badge || 'مميز';
+  document.getElementById('modalDishImage').value = dish.image || 'images/mandi.jpg';
   document.getElementById('modalDishInclusions').value = dish.inclusions || '';
-  document.getElementById('modalDishDesc').value = dish.desc;
-
-  updateDishImgPreview(dish.image);
-  document.getElementById('dishModal').style.display = 'flex';
+  document.getElementById('modalDishDesc').value = dish.desc || '';
+  updateDishImgPreview(dish.image || 'images/mandi.jpg');
+  document.getElementById('dishModal').classList.add('active');
 }
 
 function closeDishModal() {
-  document.getElementById('dishModal').style.display = 'none';
+  document.getElementById('dishModal').classList.remove('active');
 }
 
 function updateDishImgPreview(src) {
   const prev = document.getElementById('modalDishImgPreview');
-  if (src && src.trim()) {
-    const fixedSrc = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
-    prev.src = fixedSrc;
+  if (prev && src && src.trim()) {
+    const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
+    prev.src = fixed;
     prev.style.display = 'block';
-  } else {
-    prev.style.display = 'none';
   }
 }
 
@@ -558,13 +498,12 @@ function setDishPresetImg(path) {
 function handleDishImageFile(event) {
   const file = event.target.files[0];
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = function(e) {
     const base64 = e.target.result;
     document.getElementById('modalDishImage').value = base64;
     updateDishImgPreview(base64);
-    showToast('تم تحميل صورة الصنف من جهازك بنجاح!');
+    showToast('تم تحميل صورة الطبق بنجاح من جهازك!');
   };
   reader.readAsDataURL(file);
 }
@@ -573,7 +512,6 @@ function handleSaveDish(e) {
   e.preventDefault();
   const idVal = document.getElementById('modalDishId').value;
   const catVal = document.getElementById('modalDishCat').value;
-  
   const catObj = (appData.categories || []).find(c => c.slug === catVal);
   const catName = catObj ? catObj.name : catVal;
 
@@ -587,21 +525,19 @@ function handleSaveDish(e) {
     badgeIcon: 'fa-solid fa-crown',
     image: document.getElementById('modalDishImage').value.trim() || 'images/mandi.jpg',
     inclusions: document.getElementById('modalDishInclusions').value.trim(),
-    desc: document.getElementById('modalDishDesc').value.trim(),
-    rating: 5,
-    featured: true
+    desc: document.getElementById('modalDishDesc').value.trim()
   };
 
   if (idVal) {
     const idx = appData.dishes.findIndex(d => d.id === parseInt(idVal));
     if (idx !== -1) {
       appData.dishes[idx] = { ...appData.dishes[idx], ...dishData };
-      showToast('تم تحديث الصنف بنجاح!');
+      showToast('تم تحديث بيانات الطبق بنجاح!');
     }
   } else {
     const newId = appData.dishes.length ? Math.max(...appData.dishes.map(d => d.id || 0)) + 1 : 1;
     appData.dishes.unshift({ id: newId, ...dishData });
-    showToast('تمت إضافة الصنف الجديد بنجاح!');
+    showToast('تمت إضافة الطبق الجديد بنجاح!');
   }
 
   saveAppData();
@@ -611,78 +547,140 @@ function handleSaveDish(e) {
 }
 
 function deleteDish(id) {
-  if (!confirm('هل أنت متأكد من رغبتك في حذف هذا الطبق نهائياً؟')) return;
+  const dish = (appData.dishes || []).find(d => d.id === id);
+  if (!dish) return;
+  if (!confirm(`هل أنت متأكد من حذف طبق "${dish.name}" من المنيو؟`)) return;
+
   appData.dishes = appData.dishes.filter(d => d.id !== id);
   saveAppData();
   renderDishesTable(appData.dishes);
   document.getElementById('statDishesCount').textContent = appData.dishes.length;
-  showToast('تم حذف الصنف بنجاح');
+  showToast('تم حذف الطبق بنجاح!');
 }
 
-// 7. CATEGORIES MANAGER
+// ==========================================================================
+// 5. CATEGORIES FULL CRUD
+// ==========================================================================
 function renderCategoriesTable(cats) {
   const tbody = document.getElementById('categoriesTableBody');
   if (!tbody) return;
-  tbody.innerHTML = cats.map(c => `
+  tbody.innerHTML = cats.map(c => {
+    const isAll = (c.id === 'all' || c.slug === 'all');
+    return `
     <tr>
-      <td style="font-weight:800;">${c.name}</td>
-      <td><code style="background:#f1f5f9; padding:3px 8px; border-radius:6px; color:#c59d27; font-weight:700;">${c.slug}</code></td>
-      <td><span class="badge badge-primary">${c.badge}</span></td>
+      <td style="font-weight:800; font-size:15px; color:#ffffff;">${c.name}</td>
+      <td><code style="background:rgba(197,157,39,0.1); padding:4px 10px; border-radius:6px; color:#c59d27; font-weight:700; border:1px solid rgba(197,157,39,0.2);">${c.slug}</code></td>
+      <td><span class="badge badge-primary">${c.badge || 'أصناف مختارة'}</span></td>
       <td>
-        <button class="btn btn-outline btn-sm" onclick="alert('قسم رئيسي معتمد')"><i class="fa-solid fa-lock"></i> نشط</button>
+        <div style="display:flex; gap:8px; justify-content:center;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="editCategory('${c.id || c.slug}')">
+            <i class="fa-solid fa-pen-to-square"></i> تعديل
+          </button>
+          ${!isAll ? `
+          <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory('${c.id || c.slug}')">
+            <i class="fa-solid fa-trash"></i> حذف
+          </button>` : `
+          <span style="font-size:12px; color:#94a3b8; padding:5px 8px;">(رئيسي)</span>
+          `}
+        </div>
       </td>
     </tr>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function openAddCategoryModal() {
-  const name = prompt('أدخل اسم القسم الجديد (مثال: بحريات وأسماك):');
-  if (!name) return;
-  const slug = prompt('أدخل المعرف بالإنجليزية (Slug - مثال: seafood):');
-  if (!slug) return;
-  const badge = prompt('الشارة الترويجية (مثال: طازج يومياً):') || 'أصناف مختارة';
+  document.getElementById('categoryModalTitle').textContent = 'إضافة قسم مأكولات جديد';
+  document.getElementById('modalCatOriginalId').value = '';
+  document.getElementById('modalCatName').value = '';
+  document.getElementById('modalCatSlug').value = '';
+  document.getElementById('modalCatBadge').value = 'أصناف مختارة';
+  document.getElementById('categoryModal').classList.add('active');
+}
 
-  appData.categories.push({
-    id: slug,
-    slug: slug,
-    name: name,
-    badge: badge
-  });
+function editCategory(catId) {
+  const cat = (appData.categories || []).find(c => c.id === catId || c.slug === catId);
+  if (!cat) return;
+  document.getElementById('categoryModalTitle').textContent = 'تعديل قسم المأكولات: ' + cat.name;
+  document.getElementById('modalCatOriginalId').value = cat.id || cat.slug;
+  document.getElementById('modalCatName').value = cat.name;
+  document.getElementById('modalCatSlug').value = cat.slug;
+  document.getElementById('modalCatBadge').value = cat.badge || '';
+  document.getElementById('categoryModal').classList.add('active');
+}
+
+function closeCategoryModal() {
+  document.getElementById('categoryModal').classList.remove('active');
+}
+
+function handleSaveCategory(e) {
+  e.preventDefault();
+  const origId = document.getElementById('modalCatOriginalId').value;
+  const name = document.getElementById('modalCatName').value.trim();
+  const slug = document.getElementById('modalCatSlug').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  const badge = document.getElementById('modalCatBadge').value.trim() || 'أصناف مختارة';
+
+  if (!slug) {
+    alert('يرجى إدخال معرف إنجليزي صالح للقسم');
+    return;
+  }
+
+  if (origId) {
+    const idx = appData.categories.findIndex(c => c.id === origId || c.slug === origId);
+    if (idx !== -1) {
+      const oldSlug = appData.categories[idx].slug;
+      appData.categories[idx] = { id: slug, slug: slug, name: name, badge: badge };
+      if (oldSlug !== slug) {
+        (appData.dishes || []).forEach(d => {
+          if (d.cat === oldSlug) {
+            d.cat = slug;
+            d.catName = name;
+          }
+        });
+      }
+      showToast('تم تعديل بيانات القسم بنجاح!');
+    }
+  } else {
+    if (appData.categories.some(c => c.slug === slug)) {
+      alert('هذا المعرف الإنجليزي مستخدم بالفعل، يرجى اختيار معرف آخر.');
+      return;
+    }
+    appData.categories.push({ id: slug, slug: slug, name: name, badge: badge });
+    showToast('تمت إضافة القسم الجديد بنجاح!');
+  }
+
+  saveAppData();
+  closeCategoryModal();
+  renderCategoriesTable(appData.categories);
+  populateCategorySelect();
+  document.getElementById('statCatsCount').textContent = appData.categories.length;
+}
+
+function deleteCategory(catId) {
+  if (catId === 'all') {
+    alert('لا يمكن حذف قسم "كل الأصناف" لأنه القسم الرئيسي.');
+    return;
+  }
+  const cat = (appData.categories || []).find(c => c.id === catId || c.slug === catId);
+  if (!cat) return;
+  if (!confirm(`هل أنت متأكد من حذف قسم "${cat.name}"؟`)) return;
+
+  appData.categories = appData.categories.filter(c => c.id !== catId && c.slug !== catId);
   saveAppData();
   renderCategoriesTable(appData.categories);
   populateCategorySelect();
   document.getElementById('statCatsCount').textContent = appData.categories.length;
-  showToast('تمت إضافة القسم الجديد بنجاح!');
+  showToast('تم حذف القسم بنجاح!');
 }
 
-// 8. PAGES EDITOR (Home, About Us, Contact Us)
-function switchPageSubTab(subId) {
-  document.querySelectorAll('.page-sub-pane').forEach(p => p.style.display = 'none');
-  const target = document.getElementById(subId);
-  if (target) target.style.display = 'block';
-
-  const subBtns = {
-    'pageSubHome': 'btnPageSubHome',
-    'pageSubMenu': 'btnPageSubMenu',
-    'pageSubAbout': 'btnPageSubAbout',
-    'pageSubReservation': 'btnPageSubReservation',
-    'pageSubContact': 'btnPageSubContact'
-  };
-
-  for (const [paneId, btnId] of Object.entries(subBtns)) {
-    const btn = document.getElementById(btnId);
-    if (btn) {
-      btn.className = (paneId === subId) ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
-    }
-  }
-}
-
+// ==========================================================================
+// 6. ALL 5 PAGES EDITORS & DEVICE IMAGE UPLOAD
+// ==========================================================================
 function updateHomeHeroImgPreview(src) {
   const prev = document.getElementById('previewHomeHeroImg');
   if (prev && src && src.trim()) {
     const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
     prev.src = fixed;
-    prev.style.display = 'block';
   }
 }
 
@@ -694,14 +692,9 @@ function handleHomeHeroImgFile(event) {
     const base64 = e.target.result;
     document.getElementById('pageHomeHeroImg').value = base64;
     updateHomeHeroImgPreview(base64);
-    showToast('تم تحميل صورة البانر من جهازك!');
+    showToast('تم رفع صورة البانر من جهازك!');
   };
   reader.readAsDataURL(file);
-}
-
-function setHomeHeroPreset(path) {
-  document.getElementById('pageHomeHeroImg').value = path;
-  updateHomeHeroImgPreview(path);
 }
 
 function updateMenuImgPreview(src) {
@@ -709,7 +702,6 @@ function updateMenuImgPreview(src) {
   if (prev && src && src.trim()) {
     const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
     prev.src = fixed;
-    prev.style.display = 'block';
   }
 }
 
@@ -721,7 +713,7 @@ function handleMenuImgFile(event) {
     const base64 = e.target.result;
     document.getElementById('pageMenuHeroImg').value = base64;
     updateMenuImgPreview(base64);
-    showToast('تم تحميل صورة بانر المنيو من جهازك!');
+    showToast('تم رفع صورة بانر المنيو من جهازك!');
   };
   reader.readAsDataURL(file);
 }
@@ -731,7 +723,6 @@ function updateAboutImgPreview(src) {
   if (prev && src && src.trim()) {
     const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
     prev.src = fixed;
-    prev.style.display = 'block';
   }
 }
 
@@ -743,7 +734,7 @@ function handleAboutImgFile(event) {
     const base64 = e.target.result;
     document.getElementById('pageAboutImg').value = base64;
     updateAboutImgPreview(base64);
-    showToast('تم تحميل صورة قصة الضيافة من جهازك!');
+    showToast('تم رفع صورة قصة الضيافة من جهازك!');
   };
   reader.readAsDataURL(file);
 }
@@ -753,7 +744,6 @@ function updateResImgPreview(src) {
   if (prev && src && src.trim()) {
     const fixed = src.startsWith('data:') ? src : (src.startsWith('http') ? src : `../${src}`);
     prev.src = fixed;
-    prev.style.display = 'block';
   }
 }
 
@@ -765,19 +755,19 @@ function handleResImgFile(event) {
     const base64 = e.target.result;
     document.getElementById('pageResHeroImg').value = base64;
     updateResImgPreview(base64);
-    showToast('تم تحميل صورة بانر الحجز من جهازك!');
+    showToast('تم رفع صورة بانر الحجز من جهازك!');
   };
   reader.readAsDataURL(file);
 }
 
-function populatePagesForm() {
+function populateAllPagesForms() {
   if (!appData) return;
-  if (!appData.pages) appData.pages = {};
+  if (!appData.pages) appData.pages = JSON.parse(JSON.stringify(DEFAULT_DATA.pages));
   const p = appData.pages;
 
-  // 1. Home
+  // Home
   if (p.home) {
-    if (document.getElementById('pageHomeHeroTitle')) document.getElementById('pageHomeHeroTitle').value = p.home.heroTitle || 'روائع الطهي العربي الأصيل والولائم الملكية';
+    if (document.getElementById('pageHomeHeroTitle')) document.getElementById('pageHomeHeroTitle').value = p.home.heroTitle || '';
     if (document.getElementById('pageHomeHeroDesc')) document.getElementById('pageHomeHeroDesc').value = p.home.heroDesc || '';
     if (document.getElementById('pageHomeHeroImg')) {
       document.getElementById('pageHomeHeroImg').value = p.home.heroImg || 'images/hero_slide1.jpg';
@@ -787,19 +777,9 @@ function populatePagesForm() {
     if (document.getElementById('pageHomeStoryDesc')) document.getElementById('pageHomeStoryDesc').value = p.home.storyDesc || '';
   }
 
-  // 2. Menu
-  if (p.menu) {
-    if (document.getElementById('pageMenuHeroTitle')) document.getElementById('pageMenuHeroTitle').value = p.menu.heroTitle || 'قائمة المأكولات والولائم الفاخرة';
-    if (document.getElementById('pageMenuHeroSub')) document.getElementById('pageMenuHeroSub').value = p.menu.heroSubtitle || '';
-    if (document.getElementById('pageMenuHeroImg')) {
-      document.getElementById('pageMenuHeroImg').value = p.menu.heroImg || 'images/hero_slide2.jpg';
-      updateMenuImgPreview(p.menu.heroImg || 'images/hero_slide2.jpg');
-    }
-  }
-
-  // 3. About
+  // About
   if (p.about) {
-    if (document.getElementById('pageAboutHeroTitle')) document.getElementById('pageAboutHeroTitle').value = p.about.heroTitle || 'قصة مطعم قصر الضيافة';
+    if (document.getElementById('pageAboutHeroTitle')) document.getElementById('pageAboutHeroTitle').value = p.about.heroTitle || '';
     if (document.getElementById('pageAboutHeroSub')) document.getElementById('pageAboutHeroSub').value = p.about.heroSubtitle || '';
     if (document.getElementById('pageAboutStoryTitle')) document.getElementById('pageAboutStoryTitle').value = p.about.storyTitle || '';
     if (document.getElementById('pageAboutStoryP1')) document.getElementById('pageAboutStoryP1').value = p.about.storyP1 || '';
@@ -810,133 +790,123 @@ function populatePagesForm() {
     }
   }
 
-  // 4. Reservation
+  // Menu
+  if (p.menu) {
+    if (document.getElementById('pageMenuHeroTitle')) document.getElementById('pageMenuHeroTitle').value = p.menu.heroTitle || '';
+    if (document.getElementById('pageMenuHeroSub')) document.getElementById('pageMenuHeroSub').value = p.menu.heroSubtitle || '';
+    if (document.getElementById('pageMenuHeroImg')) {
+      document.getElementById('pageMenuHeroImg').value = p.menu.heroImg || 'images/hero_slide2.jpg';
+      updateMenuImgPreview(p.menu.heroImg || 'images/hero_slide2.jpg');
+    }
+  }
+
+  // Reservation
   if (p.reservation) {
-    if (document.getElementById('pageResHeroTitle')) document.getElementById('pageResHeroTitle').value = p.reservation.heroTitle || 'حجز مائدة مسبق وولائم خاصة';
+    if (document.getElementById('pageResHeroTitle')) document.getElementById('pageResHeroTitle').value = p.reservation.heroTitle || '';
     if (document.getElementById('pageResHeroSub')) document.getElementById('pageResHeroSub').value = p.reservation.heroSubtitle || '';
     if (document.getElementById('pageResHeroImg')) {
       document.getElementById('pageResHeroImg').value = p.reservation.heroImg || 'images/hero_slide1.jpg';
       updateResImgPreview(p.reservation.heroImg || 'images/hero_slide1.jpg');
     }
-    if (document.getElementById('pageResBoxTitle')) document.getElementById('pageResBoxTitle').value = p.reservation.boxTitle || 'استمارة حجز مائدة مسبق';
+    if (document.getElementById('pageResBoxTitle')) document.getElementById('pageResBoxTitle').value = p.reservation.boxTitle || '';
     if (document.getElementById('pageResBoxDesc')) document.getElementById('pageResBoxDesc').value = p.reservation.boxDesc || '';
   }
 
-  // 5. Contact
+  // Contact
   if (p.contact) {
-    if (document.getElementById('pageContactHeroTitle')) document.getElementById('pageContactHeroTitle').value = p.contact.heroTitle || 'تواصل مع قصر الضيافة';
+    if (document.getElementById('pageContactHeroTitle')) document.getElementById('pageContactHeroTitle').value = p.contact.heroTitle || '';
     if (document.getElementById('pageContactHeroSub')) document.getElementById('pageContactHeroSub').value = p.contact.heroSubtitle || '';
     if (document.getElementById('pageContactWhatsApp')) document.getElementById('pageContactWhatsApp').value = p.contact.whatsapp || '01027093535';
     if (document.getElementById('pageContactPhone')) document.getElementById('pageContactPhone').value = p.contact.phone || '01027093535';
     if (document.getElementById('pageContactEmail')) document.getElementById('pageContactEmail').value = p.contact.email || 'booking@qasr-aldiyafa.com';
-    if (document.getElementById('pageContactAddress')) document.getElementById('pageContactAddress').value = p.contact.address || 'طريق الملك فهد، حي المروج، الرياض، المملكة العربية السعودية';
-    if (document.getElementById('pageContactWorkingHours')) document.getElementById('pageContactWorkingHours').value = p.contact.workingHours || 'يومياً من الساعة 12:00 ظهراً وحتى 01:30 بعد منتصف الليل';
+    if (document.getElementById('pageContactAddress')) document.getElementById('pageContactAddress').value = p.contact.address || '';
+    if (document.getElementById('pageContactWorkingHours')) document.getElementById('pageContactWorkingHours').value = p.contact.workingHours || '';
   }
 }
 
-function saveAllPagesData() {
+function savePageData(pageKey) {
   if (!appData) return;
   if (!appData.pages) appData.pages = {};
 
-  appData.pages.home = {
-    heroTitle: document.getElementById('pageHomeHeroTitle') ? document.getElementById('pageHomeHeroTitle').value.trim() : '',
-    heroDesc: document.getElementById('pageHomeHeroDesc') ? document.getElementById('pageHomeHeroDesc').value.trim() : '',
-    heroImg: document.getElementById('pageHomeHeroImg') ? document.getElementById('pageHomeHeroImg').value.trim() : 'images/hero_slide1.jpg',
-    storyTitle: document.getElementById('pageHomeStoryTitle') ? document.getElementById('pageHomeStoryTitle').value.trim() : '',
-    storyDesc: document.getElementById('pageHomeStoryDesc') ? document.getElementById('pageHomeStoryDesc').value.trim() : ''
-  };
-
-  appData.pages.menu = {
-    heroTitle: document.getElementById('pageMenuHeroTitle') ? document.getElementById('pageMenuHeroTitle').value.trim() : '',
-    heroSubtitle: document.getElementById('pageMenuHeroSub') ? document.getElementById('pageMenuHeroSub').value.trim() : '',
-    heroImg: document.getElementById('pageMenuHeroImg') ? document.getElementById('pageMenuHeroImg').value.trim() : 'images/hero_slide2.jpg'
-  };
-
-  appData.pages.about = {
-    heroTitle: document.getElementById('pageAboutHeroTitle') ? document.getElementById('pageAboutHeroTitle').value.trim() : '',
-    heroSubtitle: document.getElementById('pageAboutHeroSub') ? document.getElementById('pageAboutHeroSub').value.trim() : '',
-    storyTitle: document.getElementById('pageAboutStoryTitle') ? document.getElementById('pageAboutStoryTitle').value.trim() : '',
-    storyP1: document.getElementById('pageAboutStoryP1') ? document.getElementById('pageAboutStoryP1').value.trim() : '',
-    storyP2: document.getElementById('pageAboutStoryP2') ? document.getElementById('pageAboutStoryP2').value.trim() : '',
-    image: document.getElementById('pageAboutImg') ? document.getElementById('pageAboutImg').value.trim() : 'images/story_dish1.jpg'
-  };
-
-  appData.pages.reservation = {
-    heroTitle: document.getElementById('pageResHeroTitle') ? document.getElementById('pageResHeroTitle').value.trim() : '',
-    heroSubtitle: document.getElementById('pageResHeroSub') ? document.getElementById('pageResHeroSub').value.trim() : '',
-    heroImg: document.getElementById('pageResHeroImg') ? document.getElementById('pageResHeroImg').value.trim() : 'images/hero_slide1.jpg',
-    boxTitle: document.getElementById('pageResBoxTitle') ? document.getElementById('pageResBoxTitle').value.trim() : '',
-    boxDesc: document.getElementById('pageResBoxDesc') ? document.getElementById('pageResBoxDesc').value.trim() : ''
-  };
-
-  appData.pages.contact = {
-    heroTitle: document.getElementById('pageContactHeroTitle') ? document.getElementById('pageContactHeroTitle').value.trim() : '',
-    heroSubtitle: document.getElementById('pageContactHeroSub') ? document.getElementById('pageContactHeroSub').value.trim() : '',
-    whatsapp: document.getElementById('pageContactWhatsApp') ? document.getElementById('pageContactWhatsApp').value.trim() : '01027093535',
-    phone: document.getElementById('pageContactPhone') ? document.getElementById('pageContactPhone').value.trim() : '01027093535',
-    email: document.getElementById('pageContactEmail') ? document.getElementById('pageContactEmail').value.trim() : '',
-    address: document.getElementById('pageContactAddress') ? document.getElementById('pageContactAddress').value.trim() : '',
-    workingHours: document.getElementById('pageContactWorkingHours') ? document.getElementById('pageContactWorkingHours').value.trim() : ''
-  };
-
-  if (appData.restaurantInfo) {
-    if (appData.pages.contact.whatsapp) appData.restaurantInfo.whatsapp = appData.pages.contact.whatsapp;
-    if (appData.pages.contact.phone) appData.restaurantInfo.phone = appData.pages.contact.phone;
-    if (appData.pages.contact.email) appData.restaurantInfo.email = appData.pages.contact.email;
-    if (appData.pages.contact.address) appData.restaurantInfo.address = appData.pages.contact.address;
-    if (appData.pages.contact.workingHours) appData.restaurantInfo.hours = appData.pages.contact.workingHours;
+  if (pageKey === 'home') {
+    appData.pages.home = {
+      heroTitle: document.getElementById('pageHomeHeroTitle').value.trim(),
+      heroDesc: document.getElementById('pageHomeHeroDesc').value.trim(),
+      heroImg: document.getElementById('pageHomeHeroImg').value.trim() || 'images/hero_slide1.jpg',
+      storyTitle: document.getElementById('pageHomeStoryTitle').value.trim(),
+      storyDesc: document.getElementById('pageHomeStoryDesc').value.trim()
+    };
+    showToast('تم حفظ تعديلات الصفحة الرئيسية بنجاح!');
+  } else if (pageKey === 'about') {
+    appData.pages.about = {
+      heroTitle: document.getElementById('pageAboutHeroTitle').value.trim(),
+      heroSubtitle: document.getElementById('pageAboutHeroSub').value.trim(),
+      storyTitle: document.getElementById('pageAboutStoryTitle').value.trim(),
+      storyP1: document.getElementById('pageAboutStoryP1').value.trim(),
+      storyP2: document.getElementById('pageAboutStoryP2').value.trim(),
+      image: document.getElementById('pageAboutImg').value.trim() || 'images/story_dish1.jpg'
+    };
+    showToast('تم حفظ تعديلات قصة الضيافة (من نحن) بنجاح!');
+  } else if (pageKey === 'menu') {
+    appData.pages.menu = {
+      heroTitle: document.getElementById('pageMenuHeroTitle').value.trim(),
+      heroSubtitle: document.getElementById('pageMenuHeroSub').value.trim(),
+      heroImg: document.getElementById('pageMenuHeroImg').value.trim() || 'images/hero_slide2.jpg'
+    };
+    showToast('تم حفظ تعديلات صفحة المنيو بنجاح!');
+  } else if (pageKey === 'reservation') {
+    appData.pages.reservation = {
+      heroTitle: document.getElementById('pageResHeroTitle').value.trim(),
+      heroSubtitle: document.getElementById('pageResHeroSub').value.trim(),
+      heroImg: document.getElementById('pageResHeroImg').value.trim() || 'images/hero_slide1.jpg',
+      boxTitle: document.getElementById('pageResBoxTitle').value.trim(),
+      boxDesc: document.getElementById('pageResBoxDesc').value.trim()
+    };
+    showToast('تم حفظ تعديلات صفحة الحجز بنجاح!');
+  } else if (pageKey === 'contact') {
+    appData.pages.contact = {
+      heroTitle: document.getElementById('pageContactHeroTitle').value.trim(),
+      heroSubtitle: document.getElementById('pageContactHeroSub').value.trim(),
+      whatsapp: document.getElementById('pageContactWhatsApp').value.trim() || '01027093535',
+      phone: document.getElementById('pageContactPhone').value.trim() || '01027093535',
+      email: document.getElementById('pageContactEmail').value.trim(),
+      address: document.getElementById('pageContactAddress').value.trim(),
+      workingHours: document.getElementById('pageContactWorkingHours').value.trim()
+    };
+    if (appData.restaurantInfo) {
+      appData.restaurantInfo.whatsapp = appData.pages.contact.whatsapp;
+      appData.restaurantInfo.phone = appData.pages.contact.phone;
+      appData.restaurantInfo.email = appData.pages.contact.email;
+      appData.restaurantInfo.address = appData.pages.contact.address;
+      appData.restaurantInfo.hours = appData.pages.contact.workingHours;
+    }
+    showToast('تم حفظ تعديلات صفحة اتصل بنا بنجاح!');
   }
 
   saveAppData();
-  showToast('تم حفظ كافة تعديلات الصفحات بنجاح ومزامنتها فوراً مع الموقع!');
 }
 
 function resetPageData(pageKey) {
-  if (!confirm('هل تريد إلغاء التعديلات غير المحفوظة واستعادة البيانات؟')) return;
+  if (!confirm('هل تريد إلغاء التعديلات واستعادة البيانات السابقة؟')) return;
   loadAppData();
-  populatePagesForm();
+  populateAllPagesForms();
   showToast('تمت استعادة البيانات بنجاح!');
 }
 
-
-
-
 // ==========================================================================
-// DATA PERSISTENCE & SYSTEM CORE
+// 7. GENERAL SETTINGS & BACKUP/RESTORE
 // ==========================================================================
-function saveAppData() {
-  try {
-    localStorage.setItem('qasr_data', JSON.stringify(appData));
-  } catch(e) {
-    console.error('Error saving appData to localStorage:', e);
-  }
-}
-
-function loadAppData() {
-  try {
-    const raw = localStorage.getItem('qasr_data');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed && Array.isArray(parsed.dishes)) {
-        appData = parsed;
-      }
-    }
-  } catch(e) {
-    console.error('Error loading appData from localStorage:', e);
-  }
-}
-
 function saveGeneralSettings() {
   if (!appData) return;
   if (!appData.restaurantInfo) appData.restaurantInfo = {};
 
-  const name = document.getElementById('settingRestName') ? document.getElementById('settingRestName').value.trim() : '';
-  const phone = document.getElementById('settingRestPhone') ? document.getElementById('settingRestPhone').value.trim() : '';
-  const wa = document.getElementById('settingRestWa') ? document.getElementById('settingRestWa').value.trim() : '';
-  const email = document.getElementById('settingRestEmail') ? document.getElementById('settingRestEmail').value.trim() : '';
-  const address = document.getElementById('settingRestAddress') ? document.getElementById('settingRestAddress').value.trim() : '';
-  const hours = document.getElementById('settingRestHours') ? document.getElementById('settingRestHours').value.trim() : '';
-  const pin = document.getElementById('settingAdminPin') ? document.getElementById('settingAdminPin').value.trim() : '1234';
+  const name = document.getElementById('settingRestName').value.trim();
+  const phone = document.getElementById('settingRestPhone').value.trim();
+  const wa = document.getElementById('settingRestWa').value.trim();
+  const email = document.getElementById('settingRestEmail').value.trim();
+  const address = document.getElementById('settingRestAddress').value.trim();
+  const hours = document.getElementById('settingRestHours').value.trim();
+  const pin = document.getElementById('settingAdminPin').value.trim() || '1234';
 
   if (name) appData.restaurantInfo.name = name;
   if (phone) appData.restaurantInfo.phone = phone;
@@ -946,17 +916,8 @@ function saveGeneralSettings() {
   if (hours) appData.restaurantInfo.hours = hours;
   if (pin) appData.restaurantInfo.adminPin = pin;
 
-  // Also update contact page data
-  if (!appData.pages) appData.pages = {};
-  if (!appData.pages.contact) appData.pages.contact = {};
-  if (wa) appData.pages.contact.whatsapp = wa;
-  if (phone) appData.pages.contact.phone = phone;
-  if (email) appData.pages.contact.email = email;
-  if (address) appData.pages.contact.address = address;
-  if (hours) appData.pages.contact.workingHours = hours;
-
   saveAppData();
-  showToast('تم حفظ إعدادات المطعم والبيانات بنجاح!');
+  showToast('تم حفظ بيانات المطعم ورمز المرور بنجاح!');
 }
 
 function populateGeneralSettings() {
@@ -983,7 +944,7 @@ function exportJSONBackup() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast('تم تصدير النسخة الاحتياطية بنجاح!');
+  showToast('تم تنزيل النسخة الاحتياطية بنجاح!');
 }
 
 function importJSONBackup(event) {
@@ -998,7 +959,6 @@ function importJSONBackup(event) {
         appData = imported;
         saveAppData();
         renderDashboard();
-        renderDishesTable(appData.dishes);
         showToast('تمت استعادة النسخة الاحتياطية بنجاح!');
       } else {
         alert('ملف النسخة الاحتياطية غير صالح.');
@@ -1011,12 +971,12 @@ function importJSONBackup(event) {
 }
 
 function resetToDefaultData() {
-  if (!confirm('تحذير: هل أنت متأكد من رغبتك في استعادة كافة بيانات الموقع والأطباق إلى إعدادات المصنع الأصلية؟')) return;
+  if (!confirm('تحذير: هل أنت متأكد من رغبتك في استعادة كافة بيانات الموقع والأطباق والأقسام إلى إعدادات المصنع الأصلية؟')) return;
   localStorage.removeItem('qasr_data');
-  initData();
+  appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  saveAppData();
   renderDashboard();
-  renderDishesTable(appData.dishes);
-  showToast('تمت استعادة بيانات المصنع بنجاح!');
+  showToast('تمت استعادة إعدادات المصنع الأصلية بنجاح!');
 }
 
 function clearAllReservations() {
@@ -1024,11 +984,34 @@ function clearAllReservations() {
   localStorage.removeItem('qasr_reservations_data');
   localStorage.removeItem('qasr_reservations');
   document.getElementById('statResCount').textContent = '0';
-  const tbody = document.getElementById('reservationsTableBody');
-  if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px; color:#94a3b8;">لا توجد أي طلبات حجز حالياً.</td></tr>';
+  renderReservationsTable([]);
   showToast('تم مسح سجل الحجوزات بنجاح!');
 }
 
+// ==========================================================================
+// 8. STORAGE PERSISTENCE
+// ==========================================================================
+function saveAppData() {
+  try {
+    localStorage.setItem('qasr_data', JSON.stringify(appData));
+  } catch(e) {
+    console.error('Error saving appData to localStorage:', e);
+  }
+}
+
+function loadAppData() {
+  try {
+    const raw = localStorage.getItem('qasr_data');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.dishes)) {
+        appData = parsed;
+      }
+    }
+  } catch(e) {
+    console.error('Error loading appData from localStorage:', e);
+  }
+}
 
 // ==========================================================================
 // START ADMIN SYSTEM
