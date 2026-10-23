@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
+
 
 
 /* Reset & Universal Tajawal Typography */
@@ -1827,5 +1829,408 @@ html, body {
   }
   .savory-site-header .nav-links-wrap {
     display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   DEFINITIVE LUXURY ORIENTAL HEADER & FOOTER ENHANCEMENTS
+   ========================================================================== */
+
+/* 1. Universal Typography */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, span:not([class*="fa-"]), button, input, select, textarea, div, section, header, footer, nav, ul, li {
+  font-family: 'Tajawal', 'Cairo', sans-serif !important;
+}
+
+/* 2. Sticky Glassmorphic Oriental Header */
+.savory-site-header {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background: rgba(14, 11, 8, 0.96) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(197, 157, 39, 0.35) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.55) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  z-index: 999999 !important;
+  direction: rtl !important;
+}
+
+.savory-header-inner {
+  max-width: 1360px !important;
+  margin: 0 auto !important;
+  padding: 14px 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.savory-logo-link,
+.savory-logo-wrap {
+  text-decoration: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 2px !important;
+  transition: transform 0.25s ease !important;
+  cursor: pointer !important;
+}
+
+.savory-logo-link:hover,
+.savory-logo-wrap:hover {
+  transform: translateY(-1px) !important;
+}
+
+.savory-logo-link .logo-title,
+.savory-logo-title {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1.1 !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+  margin: 0 !important;
+}
+
+.savory-logo-link .logo-sub,
+.savory-logo-sub {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #c59d27 !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.nav-links-wrap,
+.savory-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-links-wrap a,
+.savory-nav-links a {
+  color: #f1f5f9 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  transition: all 0.22s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.nav-links-wrap a:hover,
+.savory-nav-links a:hover {
+  color: #dfbe87 !important;
+}
+
+.nav-links-wrap a.active,
+.savory-nav-links a.active {
+  color: #c59d27 !important;
+  font-weight: 800 !important;
+  background: rgba(197, 157, 39, 0.12) !important;
+  border: 1px solid rgba(197, 157, 39, 0.3) !important;
+}
+
+.nav-links-wrap .nav-order-btn,
+.btn-nav-reserve {
+  background: linear-gradient(135deg, #25d366, #128c7e) !important;
+  color: #ffffff !important;
+  padding: 9px 18px !important;
+  border-radius: 30px !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35) !important;
+  transition: all 0.25s ease !important;
+  border: none !important;
+}
+
+.nav-links-wrap .nav-order-btn:hover,
+.btn-nav-reserve:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5) !important;
+  color: #ffffff !important;
+}
+
+.nav-links-wrap .admin-nav-btn {
+  background: linear-gradient(135deg, #c59d27, #dfbe87) !important;
+  color: #0b0f12 !important;
+  padding: 9px 18px !important;
+  border-radius: 8px !important;
+  font-weight: 800 !important;
+  font-size: 13.5px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(197, 157, 39, 0.35) !important;
+  transition: all 0.25s ease !important;
+}
+
+.nav-links-wrap .admin-nav-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(197, 157, 39, 0.5) !important;
+  color: #0b0f12 !important;
+}
+
+.mobile-nav-toggle {
+  display: none !important;
+  background: rgba(197, 157, 39, 0.12) !important;
+  border: 1px solid rgba(197, 157, 39, 0.35) !important;
+  color: #c59d27 !important;
+  font-size: 22px !important;
+  cursor: pointer !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-nav-toggle:hover {
+  background: rgba(197, 157, 39, 0.25) !important;
+  color: #dfbe87 !important;
+}
+
+@media (max-width: 992px) {
+  .nav-links-wrap,
+  .savory-nav-links {
+    display: none !important;
+  }
+  .mobile-nav-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .savory-header-inner {
+    padding: 12px 18px !important;
+  }
+}
+
+/* 3. Luxury Oriental Footer */
+.savory-footer-main {
+  background: #0d0a08 !important;
+  background: radial-gradient(circle at 50% 0%, #17120c 0%, #0c0907 100%) !important;
+  border-top: 3px solid #c59d27 !important;
+  padding: 80px 24px 30px !important;
+  color: #c4b9a8 !important;
+  direction: rtl !important;
+  text-align: right !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.savory-footer-main::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(223, 190, 135, 0.8), transparent) !important;
+}
+
+.footer-container {
+  max-width: 1360px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+.footer-grid,
+.footer-grid-container {
+  display: grid !important;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr !important;
+  gap: 40px !important;
+  margin-bottom: 50px !important;
+}
+
+.footer-col {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.footer-logo-title,
+.footer-brand-wrap .footer-logo-text {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.footer-about-text,
+.footer-about-desc {
+  font-size: 15px !important;
+  line-height: 1.85 !important;
+  color: #a89f91 !important;
+  margin-bottom: 24px !important;
+}
+
+.footer-social-links,
+.footer-social-icons {
+  display: flex !important;
+  gap: 12px !important;
+}
+
+.footer-social-links a,
+.footer-social-icons a {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(197, 157, 39, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #c59d27 !important;
+  font-size: 17px !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.footer-social-links a:hover,
+.footer-social-icons a:hover {
+  background: #c59d27 !important;
+  color: #0b0f12 !important;
+  border-color: #dfbe87 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 4px 15px rgba(197, 157, 39, 0.4) !important;
+}
+
+.footer-col h4,
+.footer-col h4.col-title {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 22px 0 !important;
+  position: relative !important;
+  padding-bottom: 12px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.footer-col h4::after,
+.footer-col h4.col-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 45px !important;
+  height: 2.5px !important;
+  background: linear-gradient(90deg, #c59d27, #dfbe87) !important;
+  border-radius: 2px !important;
+}
+
+.footer-nav-list,
+.footer-links-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.footer-nav-list li a,
+.footer-links-list a {
+  color: #b5aba0 !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  transition: all 0.22s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.footer-nav-list li a:hover,
+.footer-links-list a:hover {
+  color: #c59d27 !important;
+  transform: translateX(-4px) !important;
+}
+
+.footer-contact-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  color: #b5aba0 !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  margin-bottom: 14px !important;
+}
+
+.footer-contact-item i {
+  color: #c59d27 !important;
+  font-size: 17px !important;
+  margin-top: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.footer-contact-item a {
+  color: #b5aba0 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.footer-contact-item a:hover {
+  color: #dfbe87 !important;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 25px !important;
+  margin-top: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+  font-size: 14px !important;
+  color: #8c8275 !important;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid,
+  .footer-grid-container {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 35px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid,
+  .footer-grid-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+  .savory-footer-main {
+    padding: 60px 18px 25px !important;
+  }
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
   }
 }
