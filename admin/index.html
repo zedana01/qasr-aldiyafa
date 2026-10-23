@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم الشاملة | مطعم قصر الضيافة</title>
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #c59d27;
+      --primary-hover: #b58d1f;
+      --primary-light: #fef9e7;
+      --sidebar-bg: #0b0f12;
+      --sidebar-hover: #181e24;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      font-size: 14.5px;
+      direction: rtl;
+      text-align: right;
+      background: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Auth Screen */
+    .auth-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(11, 15, 18, 0.96);
+      backdrop-filter: blur(10px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 44px 36px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .auth-icon {
+      width: 76px;
+      height: 76px;
+      background: linear-gradient(135deg, #c59d27, #856404);
+      color: #ffffff;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      margin: 0 auto 20px;
+      box-shadow: 0 12px 30px rgba(197, 157, 39, 0.35);
+    }
+    .auth-title { font-size: 23px; font-weight: 900; margin-bottom: 8px; color: var(--text-main); }
+    .auth-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.6; }
+    .auth-pin-input {
+      width: 100%;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 12px;
+      text-align: center;
+      padding: 14px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      margin-bottom: 12px;
+      transition: all 0.25s;
+      font-family: inherit;
+    }
+    .auth-pin-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(197, 157, 39, 0.18); }
+    .auth-hint {
+      font-size: 13px;
+      color: #b58d1f;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: var(--primary-light);
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: inline-block;
+      border: 1px solid rgba(197, 157, 39, 0.25);
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: 270px;
+      background: var(--sidebar-bg);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      border-left: 1px solid rgba(212, 175, 55, 0.2);
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+    .sidebar-brand {
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #0b0f12;
+    }
+    .brand-text h2 { font-size: 16.5px; font-weight: 900; color: #ffffff; margin-bottom: 2px; }
+    .brand-text span { font-size: 11px; color: #c59d27; font-weight: 700; letter-spacing: 1px; }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .menu-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      color: #cbd5e1;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .menu-link i { font-size: 17px; width: 22px; text-align: center; color: #94a3b8; }
+    .menu-link:hover { background: var(--sidebar-hover); color: #ffffff; }
+    .menu-link:hover i { color: #c59d27; }
+    .menu-link.active {
+      background: var(--primary);
+      color: #0b0f12;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(197, 157, 39, 0.35);
+    }
+    .menu-link.active i { color: #0b0f12; }
+
+    .sidebar-footer {
+      padding: 18px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .user-pill { display: flex; align-items: center; gap: 10px; }
+    .user-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: #181e24;
+      border: 1px solid #c59d27;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 13px; color: #c59d27;
+    }
+    .user-name { font-size: 13.5px; font-weight: 800; color: #ffffff; }
+    .user-role { font-size: 11px; color: #94a3b8; }
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 17px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .logout-btn:hover { color: #f87171; background: rgba(239, 68, 68, 0.1); }
+
+    /* Main Content */
+    .admin-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    /* Top Navigation */
+    .admin-header {
+      background: #ffffff;
+      height: 72px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      flex-shrink: 0;
+    }
+    .header-title-box h1 { font-size: 19px; font-weight: 900; color: var(--text-main); }
+    .header-title-box p { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--primary); color: #0b0f12; }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-outline { background: #ffffff; border-color: var(--border); color: var(--text-main); }
+    .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .btn-danger { background: #fef2f2; border-color: #fecaca; color: #dc2626; }
+    .btn-danger:hover { background: #fee2e2; }
+    .btn-success { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
+    .btn-sm { padding: 7px 14px; font-size: 12.5px; }
+
+    /* Content Area */
+    .admin-body {
+      padding: 28px;
+      flex-grow: 1;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+    .stat-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+    .stat-icon {
+      width: 54px; height: 54px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .stat-gold { background: #fef9e7; color: #c59d27; }
+    .stat-green { background: #dcfce7; color: #16a34a; }
+    .stat-purple { background: #f3e8ff; color: #9333ea; }
+    .stat-blue { background: #e0f2fe; color: #0284c7; }
+    .stat-val { font-size: 24px; font-weight: 900; line-height: 1.1; margin-bottom: 4px; }
+    .stat-lbl { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+
+    /* Tables & Cards */
+    .card-panel {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 24px;
+    }
+    .card-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .card-panel-title { font-size: 17.5px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+    
+    .table-responsive { width: 100%; overflow-x: auto; }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+    }
+    table.data-table th {
+      padding: 13px 16px;
+      background: #f8fafc;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    table.data-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+    table.data-table tbody tr:hover { background: #f8fafc; }
+
+    .dish-thumb {
+      width: 58px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .badge-primary { background: #fef9e7; color: #b58d1f; border: 1px solid rgba(197, 157, 39, 0.2); }
+    .badge-success { background: #dcfce7; color: #16a34a; }
+    .badge-warning { background: #fef3c7; color: #d97706; }
+    .badge-danger { background: #fee2e2; color: #dc2626; }
+
+    /* Forms */
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 6px; color: var(--text-main); }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-size: 13.5px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(197, 157, 39, 0.15);
+    }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+    /* Image Upload UI */
+    .image-uploader-box {
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      background: #f8fafc;
+      transition: border-color 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .image-uploader-box:hover { border-color: var(--primary); }
+    .image-preview-thumb {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      display: none;
+    }
+    .preset-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      margin: 2px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+    .preset-pill:hover { background: #fef9e7; color: #b58d1f; border-color: #c59d27; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(11, 15, 18, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 2;
+    }
+    .modal-header h3 { font-size: 18px; font-weight: 900; }
+    .modal-close { background: none; border: none; font-size: 18px; color: var(--text-muted); cursor: pointer; padding: 4px; }
+    .modal-body { padding: 24px; }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      position: sticky;
+      bottom: 0;
+      background: #f8fafc;
+      z-index: 2;
+    }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: #0b0f12;
+      color: #ffffff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      font-size: 14px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      z-index: 9999;
+      animation: toastIn 0.3s ease;
+      border-right: 4px solid var(--primary);
+    }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Mobile Responsive */
+    .mobile-menu-btn { display: none; }
+    @media (max-width: 900px) {
+      .admin-sidebar {
+        position: fixed;
+        left: auto;
+        right: -280px;
+        top: 0;
+        bottom: 0;
+        z-index: 9999;
+      }
+      .admin-sidebar.open {
+        right: 0;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: var(--text-main);
+        cursor: pointer;
+      }
+      .admin-body { padding: 18px 14px; }
+      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Auth Screen -->
+  <div class="auth-overlay" id="authScreen">
+    <div class="auth-card">
+      <div class="auth-icon">
+        <i class="fa-solid fa-utensils"></i>
+      </div>
+      <h2 class="auth-title">لوحة تحكم قصر الضيافة</h2>
+      <p class="auth-desc">يرجى إدخال رمز الأمان (PIN) للمتابعة إلى إدارة قائمة الطعام، الأقسام، الصور، ومحتوى الصفحات.</p>
+      
+      <div class="auth-hint">
+        <i class="fa-solid fa-key"></i> الرمز الافتراضي للدخول: <strong>1234</strong>
+      </div>
+
+      <form onsubmit="handleAuth(event)">
+        <input type="password" id="pinInput" class="auth-pin-input" placeholder="••••" maxlength="6" autofocus autocomplete="off">
+        <div id="authError" style="display:none; color:#dc2626; font-size:13px; font-weight:800; margin-bottom:14px;">
+          <i class="fa-solid fa-circle-exclamation"></i> رمز الأمان غير صحيح، حاول ثانية (الافتراضي: 1234)
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:15px;">
+          <i class="fa-solid fa-lock-open"></i> الدخول إلى لوحة التحكم
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <div class="brand-text">
+        <h2>قصر الضيافة</h2>
+        <span>لوحة الإدارة والتحكم</span>
+      </div>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li>
+        <a class="menu-link active" onclick="switchTab('tabOverview', this)">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>نظرة عامة وإحصائيات</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabDishes', this)">
+          <i class="fa-solid fa-utensils"></i>
+          <span>قائمة الطعام والأصناف</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabCategories', this)">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>إدارة أقسام المنيو</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabPages', this)">
+          <i class="fa-solid fa-file-pen" style="color:#c59d27;"></i>
+          <span>تعديل محتوى الصفحات والبانرات</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabReservations', this)">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>سجل الحجوزات والطلبات</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabCMS', this)">
+          <i class="fa-solid fa-sliders"></i>
+          <span>إعدادات المطعم والتواصل</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" onclick="switchTab('tabBackup', this)">
+          <i class="fa-solid fa-database"></i>
+          <span>النسخ الاحتياطي والاستعادة</span>
+        </a>
+      </li>
+      <li>
+        <a href="../index.html" target="_blank" class="menu-link" style="color:#c59d27; background:rgba(197,157,39,0.08);">
+          <i class="fa-solid fa-arrow-up-right-from-square" style="color:#c59d27;"></i>
+          <span>عرض الموقع المباشر ↗</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="user-pill">
+        <div class="user-avatar">QD</div>
+        <div>
+          <div class="user-name">المدير العام</div>
+          <div class="user-role">Qasr Admin</div>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="logoutAdmin()" title="تسجيل الخروج">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Container -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="header-title-box">
+          <h1 id="headerTitle">لوحة التحكم الشاملة</h1>
+          <p>إدارة كافة أصناف المنيو، الأقسام، الصور، وتعديل الصفحات مباشرة</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm" onclick="openAddDishModal()">
+          <i class="fa-solid fa-plus"></i> إضافة صنف جديد
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="exportDataJSON()" title="تنزيل نسخة احتياطية من البيانات">
+          <i class="fa-solid fa-download"></i> تصدير JSON
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <!-- 1. OVERVIEW TAB -->
+      <section id="tabOverview" class="admin-tab-pane">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon stat-gold"><i class="fa-solid fa-bowl-food"></i></div>
+            <div>
+              <div class="stat-val" id="statDishesCount">12</div>
+              <div class="stat-lbl">إجمالي أصناف المنيو</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-purple"><i class="fa-solid fa-layer-group"></i></div>
+            <div>
+              <div class="stat-val" id="statCatsCount">5</div>
+              <div class="stat-lbl">أقسام المأكولات النشطة</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-green"><i class="fa-solid fa-calendar-check"></i></div>
+            <div>
+              <div class="stat-val" id="statResCount">0</div>
+              <div class="stat-lbl">طلبات الحجز الواردة</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-blue"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <div class="stat-val" id="statWhatsApp">01027093535</div>
+              <div class="stat-lbl">رقم واتساب الطلبات</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);"></i>
+              <span>أحدث طلبات الحجز والاستفسارات</span>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="switchTab('tabReservations')">عرض الكل</button>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>العميل</th>
+                  <th>الهاتف</th>
+                  <th>عدد الأفراد</th>
+                  <th>التاريخ</th>
+                  <th>الوقت</th>
+                  <th>الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="overviewRecentReservations"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DISHES TAB -->
+      <section id="tabDishes" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-utensils" style="color:var(--primary);"></i>
+              <span>إدارة أصناف وقائمة المأكولات</span>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <input type="text" id="dishSearchInput" class="form-control" placeholder="بحث باسم الصنف أو القسم..." style="width:230px;" oninput="filterAdminDishes()">
+              <button class="btn btn-primary btn-sm" onclick="openAddDishModal()">
+                <i class="fa-solid fa-plus"></i> إضافة صنف جديد
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الصورة</th>
+                  <th>اسم الطبق / الصنف</th>
+                  <th>القسم</th>
+                  <th>السعر (ر.س)</th>
+                  <th>الشارة</th>
+                  <th>مميز</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="dishesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. CATEGORIES TAB -->
+      <section id="tabCategories" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-layer-group" style="color:var(--primary);"></i>
+              <span>أقسام وتصنيفات المأكولات</span>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="openAddCategoryModal()">
+              <i class="fa-solid fa-plus"></i> إضافة قسم جديد
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>اسم القسم</th>
+                  <th>المعرف (Slug)</th>
+                  <th>الشارة الترويجية</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PAGES EDITOR TAB -->
+      <section id="tabPages" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-file-pen" style="color:var(--primary);"></i>
+              <span>محرر وتعديل نصوص وصور الصفحات (الرئيسية، قصة الضيافة، اتصل بنا)</span>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="saveAllPagesData()">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ كافة تعديلات الصفحات
+            </button>
+          </div>
+
+          <!-- Page Selection Subtabs -->
+          <div style="display:flex; gap:10px; margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:14px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary btn-sm" id="btnPageSubHome" onclick="switchPageSubTab('pageSubHome')">
+              <i class="fa-solid fa-house"></i> الصفحة الرئيسية (Home)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnPageSubAbout" onclick="switchPageSubTab('pageSubAbout')">
+              <i class="fa-solid fa-circle-info"></i> صفحة قصة الضيافة (About Us)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnPageSubContact" onclick="switchPageSubTab('pageSubContact')">
+              <i class="fa-solid fa-headset"></i> صفحة اتصل بنا والموقع (Contact Us)
+            </button>
+          </div>
+
+          <!-- SUB-TAB 1: HOME PAGE -->
+          <div id="pageSubHome" class="page-sub-pane">
+            <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-panorama"></i> بانر الصفحة الرئيسية والنصوص الترويجية</h4>
+
+            <div class="form-group">
+              <label class="form-label">العنوان الرئيسي للبانر (Hero Title) *</label>
+              <input type="text" id="pageHomeHeroTitle" class="form-control" value="روائع الطهي العربي الأصيل والولائم الملكية">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الوصف الترويجي في البانر (Hero Description) *</label>
+              <textarea id="pageHomeHeroDesc" class="form-control" rows="3">نأخذكم في رحلة إلى عوالم النكهات التراثية المطهوة على أصولها، من أشهى الكبسات النجدية والمندي والمشويات الفاخرة إلى الطواجن الفخارية والحلويات الشرقية العريقة.</textarea>
+            </div>
+
+            <!-- Home Hero Image Upload -->
+            <div class="form-group">
+              <label class="form-label">صورة البانر الرئيسي (رابط أو رفع من جهازك) *</label>
+              <div class="image-uploader-box">
+                <input type="text" id="pageHomeHeroImg" class="form-control" value="images/hero_slide1.jpg" style="margin-bottom:10px;" oninput="updateHomeHeroImgPreview(this.value)">
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileHomeHeroImg').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك
+                  </button>
+                  <input type="file" id="fileHomeHeroImg" accept="image/*" style="display:none;" onchange="handleHomeHeroImgFile(event)">
+                </div>
+                <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">
+                  أو اختر صورة جاهزة:
+                  <span class="preset-pill" onclick="setHomeHeroPreset('images/hero_slide1.jpg')">مندي حطب</span>
+                  <span class="preset-pill" onclick="setHomeHeroPreset('images/hero_slide2.jpg')">وليمة ملكية</span>
+                  <span class="preset-pill" onclick="setHomeHeroPreset('images/hero_slide3.jpg')">مجلس الضيافة</span>
+                </div>
+                <img id="previewHomeHeroImg" src="../images/hero_slide1.jpg" class="image-preview-thumb" style="display:block; max-height:220px;" alt="معاينة صورة البانر">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">عنوان قصة الضيافة في الصفحة الرئيسية</label>
+              <input type="text" id="pageHomeStoryTitle" class="form-control" value="أصالة الطهي العربي وتراث الموائد العريقة">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات الصفحة الرئيسية
+            </button>
+          </div>
+
+          <!-- SUB-TAB 2: ABOUT US -->
+          <div id="pageSubAbout" class="page-sub-pane" style="display:none;">
+            <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-building"></i> محتوى صفحة قصة الضيافة (about.html)</h4>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">عنوان البانر العلوي (Page Title) *</label>
+                <input type="text" id="pageAboutHeroTitle" class="form-control" value="قصة مطعم قصر الضيافة">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الوصف الترويجي في البانر (Subtitle) *</label>
+                <input type="text" id="pageAboutHeroSub" class="form-control" value="أكثر من عقدين من الشغف في تقديم أصول الطهي العربي العريق والولائم الملكية في أجواء من الفخامة التراثية.">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">عنوان القصة الرئيسي (Story Headline) *</label>
+              <input type="text" id="pageAboutStoryTitle" class="form-control" value="نحن لا نطهو الطعام فحسب، بل نحفظ هوية المائدة العربية">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الفقرة الأولى *</label>
+              <textarea id="pageAboutStoryP1" class="form-control" rows="3">انطلقت رحلتنا من إيمان راسخ بأن المطبخ العربي هو أحد أثرى مطابخ العالم في التنوع والعمق والتاريخ. من أودية ظفار إلى نجد العذية، ومن صعيد مصر الخالد إلى شواطئ الخليج، جمعنا لكم نخبة من أمهر الطهاة وحفظة الوصفات التراثية.</textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الفقرة الثانية *</label>
+              <textarea id="pageAboutStoryP2" class="form-control" rows="3">نلتزم بأعلى معايير الجودة الغذائية، مستخدمين أجود الذبائح البلدية الطازجة والسمن الفلاحي النقي وزيت الزيتون المعصور على البارد، لنقدم لأحبائنا وضيوفنا ولائم تليق بمقامهم الرفيع.</textarea>
+            </div>
+
+            <!-- About Image Upload -->
+            <div class="form-group">
+              <label class="form-label">صورة صفحة من نحن (رابط أو رفع من جهازك) *</label>
+              <div class="image-uploader-box">
+                <input type="text" id="pageAboutImg" class="form-control" value="images/story_dish1.jpg" style="margin-bottom:10px;" oninput="updateAboutImgPreview(this.value)">
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('fileAboutImg').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك
+                  </button>
+                  <input type="file" id="fileAboutImg" accept="image/*" style="display:none;" onchange="handleAboutImgFile(event)">
+                </div>
+                <img id="previewAboutImg" src="../images/story_dish1.jpg" class="image-preview-thumb" style="display:block; max-height:220px;" alt="معاينة صورة من نحن">
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة قصة الضيافة
+            </button>
+          </div>
+
+          <!-- SUB-TAB 3: CONTACT US -->
+          <div id="pageSubContact" class="page-sub-pane" style="display:none;">
+            <h4 style="font-size:16px; font-weight:900; margin-bottom:16px; color:var(--primary);"><i class="fa-solid fa-headset"></i> محتوى وبيانات صفحة اتصل بنا (contact.html)</h4>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">عنوان البانر العلوي (Contact Title) *</label>
+                <input type="text" id="pageContactHeroTitle" class="form-control" value="تواصل مع قصر الضيافة">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الوصف الترويجي في البانر (Contact Subtitle) *</label>
+                <input type="text" id="pageContactHeroSub" class="form-control" value="يسعدنا دائماً استقبال استفساراتكم وحجوزاتكم للولائم والمناسبات الخاصة على مدار الساعة.">
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label class="form-label">رقم واتساب المباشر *</label>
+                <input type="text" id="pageContactWhatsApp" class="form-control" value="01027093535">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الهاتف الموحد</label>
+                <input type="text" id="pageContactPhone" class="form-control" value="01027093535">
+              </div>
+              <div class="form-group">
+                <label class="form-label">البريد الإلكتروني الرسمي</label>
+                <input type="email" id="pageContactEmail" class="form-control" value="booking@qasr-aldiyafa.com">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">العنوان والمقر الرئيسي</label>
+                <input type="text" id="pageContactAddress" class="form-control" value="طريق الملك فهد، حي المروج، الرياض، المملكة العربية السعودية">
+              </div>
+              <div class="form-group">
+                <label class="form-label">أوقات العمل الرسمية</label>
+                <input type="text" id="pageContactWorkingHours" class="form-control" value="يومياً من الساعة 12:00 ظهراً وحتى 01:30 بعد منتصف الليل">
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="saveAllPagesData()">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة اتصل بنا
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. RESERVATIONS TAB -->
+      <section id="tabReservations" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-calendar-check" style="color:var(--primary);"></i>
+              <span>سجل طلبات الحجز والاستفسارات</span>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="clearAllReservations()">
+              <i class="fa-solid fa-trash"></i> مسح السجل
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>الاسم</th>
+                  <th>الجوال</th>
+                  <th>الضيوف / النوع</th>
+                  <th>التاريخ</th>
+                  <th>الوقت</th>
+                  <th>ملاحظات</th>
+                  <th>الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="reservationsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CMS & AGENCY SETTINGS TAB -->
+      <section id="tabCMS" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-sliders" style="color:var(--primary);"></i>
+              <span>إعدادات المطعم العامة وبيانات التواصل</span>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="saveCMSData()">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ الإعدادات
+            </button>
+          </div>
+
+          <form id="cmsForm" onsubmit="event.preventDefault(); saveCMSData();">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">اسم المطعم بالعربية</label>
+                <input type="text" id="cmsName" class="form-control" value="مطعم قصر الضيافة للولائم والمأكولات العربية الفاخرة">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الاسم بالإنجليزية</label>
+                <input type="text" id="cmsEnName" class="form-control" value="QASR AL-DIYAFA LUXURY ARABIAN RESTAURANT">
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label class="form-label">رقم واتساب الطلبات المباشر *</label>
+                <input type="text" id="cmsWhatsApp" class="form-control" value="01027093535">
+              </div>
+              <div class="form-group">
+                <label class="form-label">الهاتف الموحد</label>
+                <input type="text" id="cmsPhone" class="form-control" value="01027093535">
+              </div>
+              <div class="form-group">
+                <label class="form-label">البريد الإلكتروني الرسمي</label>
+                <input type="email" id="cmsEmail" class="form-control" value="booking@qasr-aldiyafa.com">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">رمز أمان لوحة التحكم (PIN الجديد)</label>
+                <input type="text" id="cmsAdminPin" class="form-control" value="1234" maxlength="6">
+              </div>
+              <div class="form-group">
+                <label class="form-label">العنوان الرئيسي</label>
+                <input type="text" id="cmsAddress" class="form-control" value="طريق الملك فهد، حي المروج، الرياض، المملكة العربية السعودية">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:10px;">
+              <i class="fa-solid fa-check"></i> تطبيق وحفظ الإعدادات
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 7. BACKUP TAB -->
+      <section id="tabBackup" class="admin-tab-pane" style="display:none;">
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">
+              <i class="fa-solid fa-database" style="color:var(--primary);"></i>
+              <span>النسخ الاحتياطي وإدارة البيانات</span>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div style="background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:20px; text-align:center;">
+              <i class="fa-solid fa-download" style="font-size:32px; color:var(--primary); margin-bottom:12px;"></i>
+              <h4 style="font-size:15px; font-weight:800; margin-bottom:6px;">تصدير نسخة احتياطية</h4>
+              <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:16px;">حفظ كافة أصناف المنيو والحجوزات والإعدادات في ملف JSON على جهازك.</p>
+              <button class="btn btn-primary btn-sm" onclick="exportDataJSON()" style="width:100%; justify-content:center;">تصدير ملف qasr_backup.json</button>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:20px; text-align:center;">
+              <i class="fa-solid fa-upload" style="font-size:32px; color:#16a34a; margin-bottom:12px;"></i>
+              <h4 style="font-size:15px; font-weight:800; margin-bottom:6px;">استيراد بيانات من ملف</h4>
+              <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:16px;">تحميل بيانات أو منيو من ملف JSON خارجي.</p>
+              <input type="file" id="importJsonInput" accept=".json" style="display:none;" onchange="importDataJSON(event)">
+              <button class="btn btn-success btn-sm" onclick="document.getElementById('importJsonInput').click()" style="width:100%; justify-content:center;">اختيار ملف JSON</button>
+            </div>
+
+            <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:14px; padding:20px; text-align:center;">
+              <i class="fa-solid fa-rotate-left" style="font-size:32px; color:#dc2626; margin-bottom:12px;"></i>
+              <h4 style="font-size:15px; font-weight:800; margin-bottom:6px; color:#dc2626;">إعادة تعيين للبيانات الأصلية</h4>
+              <p style="font-size:12.5px; color:#991b1b; margin-bottom:16px;">استعادة قائمة المأكولات والبيانات النموذجية الأصلية وإلغاء أي تعديل.</p>
+              <button class="btn btn-danger btn-sm" onclick="resetDefaultData()" style="width:100%; justify-content:center;">إعادة ضبط المصنع</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal: Add / Edit Dish -->
+  <div class="modal-backdrop" id="dishModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="dishModalTitle">إضافة صنف جديد لقائمة المأكولات</h3>
+        <button class="modal-close" onclick="closeDishModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="dishForm" onsubmit="handleSaveDish(event)">
+        <div class="modal-body">
+          <input type="hidden" id="modalDishId">
+          <div class="form-group">
+            <label class="form-label">اسم الطبق / الصنف *</label>
+            <input type="text" id="modalDishName" class="form-control" required placeholder="مثال: مندي لحم نعيمي بالزعفران الملكي">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">القسم / التصنيف *</label>
+              <select id="modalDishCat" class="form-control" required>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">الشارة الترويجية (Badge)</label>
+              <input type="text" id="modalDishBadge" class="form-control" placeholder="اختيار الشيف أو الأكثر طلباً">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">السعر الحالي (ر.س) *</label>
+              <input type="number" id="modalDishPrice" class="form-control" required placeholder="145">
+            </div>
+            <div class="form-group">
+              <label class="form-label">السعر السابق (قبل الخصم)</label>
+              <input type="number" id="modalDishOldPrice" class="form-control" placeholder="175">
+            </div>
+          </div>
+
+          <!-- Dish Image Upload -->
+          <div class="form-group">
+            <label class="form-label">صورة الصنف (رابط أو رفع من جهازك) *</label>
+            <div class="image-uploader-box">
+              <input type="text" id="modalDishImage" class="form-control" placeholder="images/mandi.jpg أو رابط مباشر" style="margin-bottom:10px;" oninput="updateDishImgPreview(this.value)">
+              <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modalDishFile').click()">
+                  <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك / هاتفك
+                </button>
+                <input type="file" id="modalDishFile" accept="image/*" style="display:none;" onchange="handleDishImageFile(event)">
+              </div>
+              <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">
+                أو اختر صورة جاهزة:
+                <span class="preset-pill" onclick="setDishPresetImg('images/lamb_chops.jpg')">ريش مشوية</span>
+                <span class="preset-pill" onclick="setDishPresetImg('images/mandi.jpg')">مندي لحم</span>
+                <span class="preset-pill" onclick="setDishPresetImg('images/tajin.jpg')">طاجن عكاوي</span>
+                <span class="preset-pill" onclick="setDishPresetImg('images/kunafa.jpg')">كنافة نابلسية</span>
+                <span class="preset-pill" onclick="setDishPresetImg('images/fattoush.jpg')">فتوش</span>
+              </div>
+              <img id="modalDishImgPreview" src="" class="image-preview-thumb" alt="معاينة الصورة">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">المكونات والمرفقات</label>
+            <input type="text" id="modalDishInclusions" class="form-control" placeholder="أرز بسمتي عنبر، زعفران، مكسرات، طحينة، دقوس">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">وصف الطبق وتفاصيل الطهي *</label>
+            <textarea id="modalDishDesc" class="form-control" rows="3" required placeholder="لحم نعيمي طازج مطهو ببطء على حطب السمر..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeDishModal()">إلغاء</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ الصنف</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="adminToast">
+    <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i>
+    <span id="toastMsg">تم تنفيذ العملية بنجاح!</span>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

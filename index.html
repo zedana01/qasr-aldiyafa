@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>مطعم قصر الضيافة | روائع الطهي العربي الأصيل والولائم الملكية</title>
+  <meta name="description" content="مطعم قصر الضيافة، أرقى مأكولات المطبخ العربي الأصيل، كبسات نجدية، مندي حطب، مشويات على الفحم، وطواجن فخارية وحلويات شرقية فاخرة.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <!-- HEADER -->
+  <header class="savory-site-header">
+    <div class="savory-header-inner">
+      <a href="index.html" class="savory-logo-link">
+        <span class="logo-title">قصر الضيافة</span>
+        <span class="logo-sub">مطعم ومأكولات عربية فاخرة</span>
+      </a>
+
+      <nav class="nav-links-wrap">
+        <a href="index.html" class="active">الرئيسية</a>
+        <a href="menu.html" class="">قائمة الولائم</a>
+        <a href="about.html" class="">قصة الضيافة</a>
+        <a href="reservation.html" class="">حجز طاولة</a>
+        <a href="contact.html" class="">اتصل بنا</a>
+        <a href="https://wa.me/201027093535?text=مرحباً%20مطعم%20قصر%20الضيافة،%20أود%20الاستفسار%20عن%20قائمة%20الولائم" target="_blank" class="nav-order-btn">
+          <i class="fa-brands fa-whatsapp"></i> طلب مباشر
+        </a>
+        <a href="admin/index.html" class="admin-nav-btn" title="دخول لوحة التحكم (PIN: 1234)">
+          <i class="fa-solid fa-lock"></i> لوحة الإدارة
+        </a>
+      </nav>
+
+      <button class="mobile-nav-toggle" onclick="toggleMobileMenu()" aria-label="فتح القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+    <div class="mob-drawer-header">
+      <div style="display:flex; flex-direction:column;">
+        <span style="font-size:18px; font-weight:900; color:#c59d27;">قصر الضيافة</span>
+        <span style="font-size:11px; color:#94a3b8;">مطعم ومأكولات عربية فاخرة</span>
+      </div>
+      <button class="mob-drawer-close" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Admin Quick Access Card -->
+    <div style="margin-bottom:18px;">
+      <a href="admin/index.html" style="display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg, #1e293b, #0f172a); border:1px solid #c59d27; color:#c59d27; padding:12px 14px; border-radius:10px; text-decoration:none; font-weight:800; font-size:13.5px;">
+        <span><i class="fa-solid fa-lock" style="margin-left:6px;"></i> لوحة التحكم الإدارية</span>
+        <span style="background:#c59d27; color:#0b0f12; font-size:11px; padding:2px 8px; border-radius:12px; font-weight:900;">PIN: 1234</span>
+      </a>
+    </div>
+
+    <ul class="mob-drawer-menu">
+      <li><a href="index.html" class="mob-drawer-link active"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+      <li><a href="menu.html" class="mob-drawer-link "><i class="fa-solid fa-utensils"></i> قائمة الطعام والولائم</a></li>
+      <li><a href="about.html" class="mob-drawer-link "><i class="fa-solid fa-circle-info"></i> قصة الضيافة وتراثنا</a></li>
+      <li><a href="reservation.html" class="mob-drawer-link "><i class="fa-solid fa-calendar-check"></i> حجز طاولة وولائم</a></li>
+      <li><a href="contact.html" class="mob-drawer-link "><i class="fa-solid fa-headset"></i> اتصل بنا والموقع</a></li>
+      <li><a href="https://wa.me/201027093535" target="_blank" class="mob-drawer-link" style="color:#25d366; background:rgba(37,211,102,0.1); border-color:#25d366;"><i class="fa-brands fa-whatsapp"></i> واتساب مباشر (24/7)</a></li>
+    </ul>
+  </div>
+
+
+
+<!-- 3. Hero Banner with Multi-Slide Cinematic Ken Burns Crossfade -->
+<section id="hero" class="savory-hero-banner">
+<div class="hero-slides-wrapper" id="heroSlidesWrapper">
+<div class="hero-slide-bg active" style="background-image: url('images/hero_slide1.jpg');"></div>
+<div class="hero-slide-bg" style="background-image: url('images/omani_shuwa.jpg');"></div>
+<div class="hero-slide-bg" style="background-image: url('images/hero_slide2.jpg');"></div>
+<div class="hero-slide-bg" style="background-image: url('images/hero_slide3.jpg');"></div></div>
+<div class="hero-overlay"></div>
+<div class="savory-hero-card">
+    <span class="savory-script-accent">أصالة المذاق وكرم الضيافة</span></p>
+<h1>روائع الطهي العربي الأصيل والولائم الملكية</h1>
+<div class="savory-hero-divider"></div>
+<p>
+      نبتكر تجارب طهي متوارثة تمزج بين كرم الضيافة الخليجية وعراقة الطواجن المصرية وسحر البهارات العمانية، لنصنع لكم مائدة لا تُنسى في كل زيارة.
+    </p>
+<div class="hero-features-ribbon">
+<div class="hero-feat-item"><i class="fa-solid fa-crown"></i> خدمة ضيافة ملكية VIP</div>
+<div class="hero-feat-item"><i class="fa-solid fa-leaf"></i> مكونات بلدية طازجة 100%</div>
+<div class="hero-feat-item"><i class="fa-solid fa-fire-burner"></i> طهي أصيل على الحطب والفحم</div></div></div>
+<!-- Hero Progress Indicators -->
+<div class="hero-indicators">
+    <span class="hero-indicator-dot active" data-hero-slide="0" title="مشهد 1"></span><br />
+    <span class="hero-indicator-dot" data-hero-slide="1" title="مشهد 2"></span><br />
+    <span class="hero-indicator-dot" data-hero-slide="2" title="مشهد 3"></span><br />
+    <span class="hero-indicator-dot" data-hero-slide="3" title="مشهد 4"></span>
+  </div>
+</section>
+<!-- 4. Section: Our Story -->
+<section id="our-story" class="section-story">
+<div class="story-text-wrap">
+    <span class="script-tag">قصة كرمنا</span></p>
+<h2>أصالة الطهي العربي وتراث الموائد العريقة</h2>
+<p>
+      منذ بدايتنا ونحن نلتزم بفلسفة كرم الضيافة الأصيلة: استخدام أجود اللحوم النعيمية والمكونات البلدية الطازجة، وإحياء فنون الطبخ العربي المتوارثة من كبسات ومندي الخليج الفاخرة إلى أشهى الطواجن المصرية والشوا العماني الأصيل.
+    </p>
+<p>
+      كل طبق في قصر الضيافة يُعد بعناية فائقة على أيدي طهاة متمرسين في فنون الطهي الشعبي والملكي، من الخبز المخبوز طازجاً في التنور إلى أجود أنواع التمور والقهوة العربية المهيلة.
+    </p>
+<div class="story-signature-box">
+      <img decoding="async" src="images/story_center.png" alt="Chef Signature" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر"></p>
+<div class="story-chef-title">
+<h5>الشيف التنفيذي / عبد الله النعيمي</h5>
+<p>        <span>خبير الولائم والضيافة العربية الأصيلة</span>
+      </div></div></div>
+<div class="story-media-grid">
+<div class="interactive-img-wrap story-media-main">
+      <img decoding="async" src="images/story_dish1.jpg" alt="Ambiance" loading="lazy" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر">
+    </div>
+<div class="interactive-img-wrap story-media-sub">
+      <img decoding="async" src="images/story_dish2.jpg" alt="Chef Craft" loading="lazy" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر">
+    </div>
+<div class="interactive-img-wrap story-media-sub">
+      <img decoding="async" src="images/story_signature.jpg" alt="Dessert Plating" loading="lazy" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر">
+    </div></div>
+</section>
+<!-- 5. Section: Dotted Restaurant Menu (Arabian Heritage) -->
+<section id="our-menu" class="section-menu">
+<div class="menu-center-title">
+    <span class="script-tag">قائمة الولائم المختارة</span></p>
+<h2>أشهى المأكولات التراثية العربية</h2>
+<p>تشكيلة حصرية من أطايب المطبخ السعودي والمصري والخليجي والعماني</p>
+</p></div>
+<div class="menu-cols-wrap">
+    <!-- Col 1: الولائم والمأكولات الرئيسية -->
+<div>
+<div class="menu-col-header">
+        الولائم والمأكولات الرئيسية<br />
+        <span>سعودية ومصرية أصيلة</span>
+      </div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">كبسة اللحم النعيمي المدخن (السعودية)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">لحم نعيمي بلدي طازج مطهو مع أرز البسمتي المعطر بالهيل والزعفران والمكسرات المحمصة.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">طاجن موزة ضأن بالبامية الفلاحي (مصر)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">موزة ضأن طازجة مطهوة ببطء في الفرن الفخاري مع صوص الطماطم المسبك والكزبرة والريحان البلدي.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">مندي لحم عسيري بالحطب (الجنوب السعودي)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">لحم غنم طري مندي على أصوله في برميل الفحم الطبيعي، يُقدم مع صلصة الدقوس الحارة وطحينة السمسم.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">حمام محشي بالفريك الصعيدي البلدي (مصر)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">حمام بري محشو بأجود أنواع الفريك المحمص بالسمن الفلاحي وكبد الحمام والمكسرات الفاخرة.</p>
+</p></div></div>
+<!-- Col 2: روائع البحر والمشويات والحلويات -->
+<div>
+<div class="menu-col-header">
+        روائع المشويات والبحريات والحلويات<br />
+        <span>خليجية وعمانية وشرقية</span>
+      </div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">مكبوس الروبيان العماني الأصيل (عمان)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">روبيان بحري طازج مطهو مع الأرز البسمتي بالبهارات الظفارية العطرية واللومي العماني المجفف.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">مشويات عربية مشكلة على الفحم (المشرق)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">ريش ضأن نعيمي، أوصال لحم تيس، وكباب حاتي بلدي متبل بالأعشاب الشرقية مع خبز التنور الساخن.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">شوربة لحم غنم بالهيل والمستكة (تراثية)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">مرق لحم ضأن غني مطهو مع حبوب الهيل الأخضر والمستكة الحرة، يُقدم مع شرائح الليمون والخبز المحمص.</p>
+</p></div>
+<div class="menu-item-row">
+<div class="item-line-top">
+          <span class="item-name">أم علي الملكية بالقشطة والمكسرات (مصر)</span><br />
+          <span class="item-dots"></span><br />
+          <a href="#reservation" class="menu-item-tag-btn"><i class="fa-solid fa-bell-concierge"></i> اطلب الآن</a>
+        </div>
+<p class="item-desc">رقائق الباف باستري الهشة المغمورة بالحليب الساخن والمستكة، تعلوها طبقة قشطة فلاحي وفستق حلبي.</p>
+</p></div></div></div>
+</section>
+<!-- 6. Section: Interactive Categorized Food Showcase (Tabs with Real Click Action) -->
+<section id="food-categories" class="section-food-tabs">
+<div class="header-center">
+    <span class="script-tag">روائع المائدة العربية</span></p>
+<h2>أصناف المأكولات والولائم حسب الأقسام</h2>
+<p>اضغط على أي قسم لاستعراض أشهى الأطباق التراثية المحضرة طازجة على أيدي كبار الطهاة</p>
+</p></div>
+<!-- Filter Buttons -->
+<div class="food-tabs-nav">
+    <button type="button" class="cat-filter-btn active" data-filter="all">كل الأصناف الملكية</button><br />
+    <button type="button" class="cat-filter-btn" data-filter="grills">مشويات وولائم عربية</button><br />
+    <button type="button" class="cat-filter-btn" data-filter="mains">كبسات وطواجن أصيلة</button><br />
+    <button type="button" class="cat-filter-btn" data-filter="desserts">حلويات وضيافة شرقية</button><br />
+    <button type="button" class="cat-filter-btn" data-filter="salads">مقبلات وشوربات عربية</button>
+  </div>
+<!-- Food Grid -->
+<div class="food-cards-grid" id="foodCardsGrid">
+
+    <div class="food-card" data-cat="grills">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=1" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/lamb_chops.jpg" alt="ريش ضأن نعيمي مشوية على الفحم" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مشويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-crown"></i> اختيار الشيف</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=1" style="color:inherit; text-decoration:none;">ريش ضأن نعيمي مشوية على الفحم</a></h4>
+        <p>ريش غنم نعيمي طازجة متبلة بالبهارات النجدية وزيت الزيتون، مشوية على الفحم الطبيعي مع البصل المشوي.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">145 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B1%D9%8A%D8%B4%20%D8%B6%D8%A3%D9%86%20%D9%86%D8%B9%D9%8A%D9%85%D9%8A%20%D9%85%D8%B4%D9%88%D9%8A%D8%A9%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%81%D8%AD%D9%85%20%D8%A8%D8%B3%D8%B9%D8%B1%20145%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=1" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="grills">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=2" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/kofta.jpg" alt="كباب حاتي مشوي بالخلطة السرية" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مشويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-fire"></i> الأكثر طلباً</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=2" style="color:inherit; text-decoration:none;">كباب حاتي مشوي بالخلطة السرية</a></h4>
+        <p>لحم بلدي مفروم مع التوابل الشرقية ودهن اللية، مشوي على السيخ ويُقدم مع سلطة الطحينة الحارة وخبز الصاج.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">120 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D9%83%D8%A8%D8%A7%D8%A8%20%D8%AD%D8%A7%D8%AA%D9%8A%20%D9%85%D8%B4%D9%88%D9%8A%20%D8%A8%D8%A7%D9%84%D8%AE%D9%84%D8%B7%D8%A9%20%D8%A7%D9%84%D8%B3%D8%B1%D9%8A%D8%A9%20%D8%A8%D8%B3%D8%B9%D8%B1%20120%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=2" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="grills">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=3" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/smoked_meat.jpg" alt="أوصال لحم تيس بلدي مدخن على الحطب" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مشويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-award"></i> تحضير خاص</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=3" style="color:inherit; text-decoration:none;">أوصال لحم تيس بلدي مدخن على الحطب</a></h4>
+        <p>قطع لحم طرية متبلة بماء الورد والهيل العماني، مشوية ببطء ومقدمة مع الفلفل المشوي والليمون المعتق.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">135 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%A3%D9%88%D8%B5%D8%A7%D9%84%20%D9%84%D8%AD%D9%85%20%D8%AA%D9%8A%D8%B3%20%D8%A8%D9%84%D8%AF%D9%8A%20%D9%85%D8%AF%D8%AE%D9%86%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%AD%D8%B7%D8%A8%20%D8%A8%D8%B3%D8%B9%D8%B1%20135%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=3" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="mains">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=4" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/mandi.jpg" alt="مندي لحم نعيمي بالزعفران الملكي" loading="lazy">
+        </a>
+        <span class="card-badge-cat">كبسات وطواجن</span>
+        <span class="card-badge-special"><i class="fa-solid fa-crown"></i> وليمة ملكية</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=4" style="color:inherit; text-decoration:none;">مندي لحم نعيمي بالزعفران الملكي</a></h4>
+        <p>لحم غنم ندي طازج مطهو في حفرة المندي بالحطب، يُقدم فوق أرز بسمتي بالزعفران والمكسرات الذهبية المقرمشة.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">165 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D9%85%D9%86%D8%AF%D9%8A%20%D9%84%D8%AD%D9%85%20%D9%86%D8%B9%D9%8A%D9%85%D9%8A%20%D8%A8%D8%A7%D9%84%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%20%D8%A8%D8%B3%D8%B9%D8%B1%20165%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=4" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="mains">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=5" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/tajin.jpg" alt="طاجن عكّاوي وموزات بالبصل القاورمة" loading="lazy">
+        </a>
+        <span class="card-badge-cat">كبسات وطواجن</span>
+        <span class="card-badge-special"><i class="fa-solid fa-fire"></i> وصفة تراثية</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=5" style="color:inherit; text-decoration:none;">طاجن عكّاوي وموزات بالبصل القاورمة</a></h4>
+        <p>طاجن فخاري مصري أصيل غني بقطع العكّاوي المطهوة على نار هادئة مع صوص البصل المكرمل وجوزة الطيب والمستكة.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">150 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B7%D8%A7%D8%AC%D9%86%20%D8%B9%D9%83%D9%91%D8%A7%D9%88%D9%8A%20%D9%88%D9%85%D9%88%D8%B2%D8%A7%D8%AA%20%D8%A8%D8%A7%D9%84%D8%A8%D8%B5%D9%84%20%D8%A7%D9%84%D9%82%D8%A7%D9%88%D8%B1%D9%85%D8%A9%20%D8%A8%D8%B3%D8%B9%D8%B1%20150%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=5" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="mains">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=6" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/omani_shuwa.jpg" alt="شوا عماني تقليدي ببهارات ظفار" loading="lazy">
+        </a>
+        <span class="card-badge-cat">كبسات وطواجن</span>
+        <span class="card-badge-special"><i class="fa-solid fa-award"></i> بهارات ظفار</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=6" style="color:inherit; text-decoration:none;">شوا عماني تقليدي ببهارات ظفار</a></h4>
+        <p>لحم مطهو تحت الأرض لمدة 24 ساعة مغلفاً بخيش النخيل ومتبلاً بالخل العماني الحامض والفلفل والثوم المعمر.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">170 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B4%D9%88%D8%A7%20%D8%B9%D9%85%D8%A7%D9%86%D9%8A%20%D8%AA%D9%82%D9%84%D9%8A%D8%AF%D9%8A%20%D8%A8%D8%A8%D9%87%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%B8%D9%81%D8%A7%D8%B1%20%D8%A8%D8%B3%D8%B9%D8%B1%20170%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=6" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="desserts">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=7" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/kunafa.jpg" alt="كنافة نابلسية بالقشطة والفستق" loading="lazy">
+        </a>
+        <span class="card-badge-cat">حلويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-crown"></i> سمن فلاحي</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=7" style="color:inherit; text-decoration:none;">كنافة نابلسية بالقشطة والفستق</a></h4>
+        <p>شعيرات الكنافة الذهبية المقرمشة المحضرة بالسمن البلدي الفلاحي، محشوة بقشطة طازجة ومسقية بشربات الزهر الخفيف.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">55 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D9%83%D9%86%D8%A7%D9%81%D8%A9%20%D9%86%D8%A7%D8%A8%D9%84%D8%B3%D9%8A%D8%A9%20%D8%A8%D8%A7%D9%84%D9%82%D8%B4%D8%B7%D8%A9%20%D9%88%D8%A7%D9%84%D9%81%D8%B3%D8%AA%D9%82%20%D8%A8%D8%B3%D8%B9%D8%B1%2055%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=7" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="desserts">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=8" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/omani_halwa.jpg" alt="الحلوى العمانية السلطانية بالزعفران" loading="lazy">
+        </a>
+        <span class="card-badge-cat">حلويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-award"></i> ضيافة سلطانية</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=8" style="color:inherit; text-decoration:none;">الحلوى العمانية السلطانية بالزعفران</a></h4>
+        <p>الحلوى العمانية التقليدية الفاخرة المحضرة بماء الورد الجبلي، الهيل النيبالي، الزعفران الإيراني والمكسرات المحمصة.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">65 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%89%20%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%86%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D9%8A%D8%A9%20%D8%A8%D8%A7%D9%84%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86%20%D8%A8%D8%B3%D8%B9%D8%B1%2065%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=8" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="desserts">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=9" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/masoub.jpg" alt="معصوب ملكي بالعسل والقشطة والتمر" loading="lazy">
+        </a>
+        <span class="card-badge-cat">حلويات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-fire"></i> تراث حجازي</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=9" style="color:inherit; text-decoration:none;">معصوب ملكي بالعسل والقشطة والتمر</a></h4>
+        <p>موز مهروس مع خبز الفطير الأسمر الساخن، تعلوه طبقات القشطة وعسل السدر الجبلي الطبيعي وحبات اللوز المقرمش.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">50 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D9%85%D8%B9%D8%B5%D9%88%D8%A8%20%D9%85%D9%84%D9%83%D9%8A%20%D8%A8%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20%D9%88%D8%A7%D9%84%D9%82%D8%B4%D8%B7%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D9%85%D8%B1%20%D8%A8%D8%B3%D8%B9%D8%B1%2050%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=9" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="salads">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=10" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/fattoush.jpg" alt="سلطة فتوش بدبس الرمان والخبز المقرمش" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مقبلات وسلطات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-leaf"></i> طازج 100%</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=10" style="color:inherit; text-decoration:none;">سلطة فتوش بدبس الرمان والخبز المقرمش</a></h4>
+        <p>خضار موسمية طازجة مع أوراق النعناع والجرجير، حبوب الرمان الحامضة، والخبز المحمص مع تتبيلة دبس الرمان الفاخرة.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">40 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B3%D9%84%D8%B7%D8%A9%20%D9%81%D8%AA%D9%88%D8%B4%20%D8%A8%D8%AF%D8%A8%D8%B3%20%D8%A7%D9%84%D8%B1%D9%85%D8%A7%D9%86%20%D9%88%D8%A7%D9%84%D8%AE%D8%A8%D8%B2%20%D8%A7%D9%84%D9%85%D9%82%D8%B1%D9%85%D8%B4%20%D8%A8%D8%B3%D8%B9%D8%B1%2040%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=10" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="salads">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=11" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/mutabbal.jpg" alt="طحينة ومتبل باذنجان مشوي على الفحم" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مقبلات وسلطات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-crown"></i> نكهة أصيلة</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=11" style="color:inherit; text-decoration:none;">طحينة ومتبل باذنجان مشوي على الفحم</a></h4>
+        <p>باذنجان رومي مشوي على الفحم الطبيعي مهروس مع الطحينة السمراء وعصير الليمون، يعلوه زيت زيتون بكر ممتاز.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">38 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B7%D8%AD%D9%8A%D9%86%D8%A9%20%D9%88%D9%85%D8%AA%D8%A8%D9%84%20%D8%A8%D8%A7%D8%B0%D9%86%D8%AC%D8%A7%D9%86%20%D9%85%D8%B4%D9%88%D9%8A%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%81%D8%AD%D9%85%20%D8%A8%D8%B3%D8%B9%D8%B1%2038%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=11" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card" data-cat="salads">
+      <div class="food-thumb-wrap">
+        <a href="dish-detail.html?id=12" style="display:block; width:100%; height:100%;">
+          <img decoding="async" src="images/soup.jpg" alt="شوربة كوارع وموزات بالليمون والمستكة" loading="lazy">
+        </a>
+        <span class="card-badge-cat">مقبلات وسلطات</span>
+        <span class="card-badge-special"><i class="fa-solid fa-fire"></i> غنية ومغذية</span>
+      </div>
+      <div class="food-card-body">
+        <h4><a href="dish-detail.html?id=12" style="color:inherit; text-decoration:none;">شوربة كوارع وموزات بالليمون والمستكة</a></h4>
+        <p>مرقة غنية ومغذية مستخلصة على نار هادئة، بنكهة المستكة وحبات الهيل وثوم الطشة المحمر والخبز البلدي المقرمش.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px dashed rgba(212,175,55,0.25);">
+          <div style="font-size:18px; font-weight:900; color:#c59d27;">45 <span style="font-size:12px; font-weight:700;">ر.س</span></div>
+          <div style="display:flex; gap:6px;">
+            <a href="https://wa.me/201027093535?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D9%82%D8%B5%D8%B1%20%D8%A7%D9%84%D8%B6%D9%8A%D8%A7%D9%81%D8%A9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%3A%20%D8%B4%D9%88%D8%B1%D8%A8%D8%A9%20%D9%83%D9%88%D8%A7%D8%B1%D8%B9%20%D9%88%D9%85%D9%88%D8%B2%D8%A7%D8%AA%20%D8%A8%D8%A7%D9%84%D9%84%D9%8A%D9%85%D9%88%D9%86%20%D9%88%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%83%D8%A9%20%D8%A8%D8%B3%D8%B9%D8%B1%2045%20%D8%B1.%D8%B3" target="_blank" rel="noopener" class="btn-card-order" style="background:#25d366; color:#fff; border-color:#25d366;" title="طلب مباشر عبر واتساب">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <a href="dish-detail.html?id=12" class="btn-card-order" title="تفاصيل الصنف">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 7. Section: Customer Testimonials Revolving Slider (سلايدر دوار تفاعلي لآراء العملاء) -->
+<section id="testimonials" class="section-parallax-quote">
+<div class="testimonials-slider-container" id="testimonialsSlider">
+<!-- Slide 1 -->
+<div class="testimonial-slide active-slide">
+<div class="testimonial-stars">
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i>
+      </div>
+<h2>&#8220;النجاح الحقيقي في الطهي يبدأ عندما يتحول الطبق إلى ذكرى لا تُنسى&#8221;</h2>
+<p>
+        &#8220;كل تفصيلة داخل قصر الضيافة، من رائحة الهيل والزعفران في القهوة الترحيبية إلى طريقة إنضاج اللحوم النعيمية ببطء على الحطب الطبيعي، صُممت لتمنح الزائر شعوراً استثنائياً بكرم الضيافة والفخامة التامة.&#8221;
+      </p>
+<div class="testimonial-author-box">
+        <img decoding="async" src="images/chef_image.jpg" alt="Chef Review" class="author-avatar" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر"></p>
+<div class="author-meta-text">
+<div class="author-name">دليل الضيافة والمطاعم الفاخرة</div>
+<div class="author-role">تقييم النخبة الرسمي 2026</div></div></div></div>
+<!-- Slide 2 -->
+<div class="testimonial-slide">
+<div class="testimonial-stars">
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i>
+      </div>
+<h2>&#8220;أفضل كبسة لحم نعيمي ومندي عسيري تذوقته على الإطلاق&#8221;</h2>
+<p>
+        &#8220;تجربة لا تُقارن! التناسق العجيب في البهارات وطراوة اللحم مع طواجن البامية الفلاحي والشوا العماني جعلت من زيارتنا احتفالاً حقيقياً بالمذاق العربي الأصيل. نوصي به بشدة لكل عشاق الكرم والولائم الملكية.&#8221;
+      </p>
+<div class="testimonial-author-box">
+        <img decoding="async" src="images/story_dish2.jpg" alt="Ahmed" class="author-avatar" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر"></p>
+<div class="author-meta-text">
+<div class="author-name">م. أحمد عبد الرحمن</div>
+<div class="author-role">ناقد طعام وخبير التذوق التراثي</div></div></div></div>
+<!-- Slide 3 -->
+<div class="testimonial-slide">
+<div class="testimonial-stars">
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i><br />
+        <i class="fa-solid fa-star"></i>
+      </div>
+<h2>&#8220;مجلس عربي ساحر ومثالي للمناسبات والعائلات الراقية&#8221;</h2>
+<p>
+        &#8220;المكان يجمع بين دفء الكرم العربي وأناقة الديكورات، بالإضافة إلى تشكيلة الكنافة النابلسية والحلوى العمانية وأم علي التي تُعد الأفضل بلا منازع. حجز المائدة كان في غاية السلاسة والسرعة.&#8221;
+      </p>
+<div class="testimonial-author-box">
+        <img decoding="async" src="images/story_signature.jpg" alt="Sarah" class="author-avatar" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر"></p>
+<div class="author-meta-text">
+<div class="author-name">د. سارة المنشاوي</div>
+<div class="author-role">ضيوف دائمون &#8211; جناح كبار الزوار (VIP)</div></div></div></div>
+<!-- Dots Navigation -->
+<div class="slider-dots-nav">
+      <button type="button" class="slider-dot active-dot" data-slide="0" aria-label="رأي 1"></button><br />
+      <button type="button" class="slider-dot" data-slide="1" aria-label="رأي 2"></button><br />
+      <button type="button" class="slider-dot" data-slide="2" aria-label="رأي 3"></button>
+    </div>
+<!-- Arrows Navigation -->
+<div class="slider-nav-arrows">
+      <button type="button" class="slider-arrow-btn" id="prevSlideBtn" aria-label="السابق"><i class="fa-solid fa-arrow-right"></i></button><br />
+      <button type="button" class="slider-arrow-btn" id="nextSlideBtn" aria-label="التالي"><i class="fa-solid fa-arrow-left"></i></button>
+    </div></div>
+</section>
+<!-- 8. Section: Executive Chef -->
+<section id="our-chef" class="section-chef">
+<div class="interactive-img-wrap chef-img-card">
+    <img decoding="async" src="images/chef_image.jpg" alt="Head Chef" title="مطعم قصر الضيافة | نموذج تصميم موقع مطعم شرقي فاخر">
+  </div>
+<div class="chef-details">
+    <span class="script-tag">كرم الضيافة</span></p>
+<h2>إشراف مباشر من كبار طهاة الولائم العربية</h2>
+<p>
+      يقود مطبخنا نخبة من كبار طهاة الولائم والمطابخ الخليجية والمصرية والتراثية، مع حرص دائم على استخدام لحوم بلدية نعيمية طازجة يومياً، وخضار عضوية وتوابل عربية أصيلة من الهيل والزعفران والمستكة.
+    </p>
+<div class="chef-points">
+<div class="chef-point-item"><i class="fa-solid fa-circle-check"></i> لحوم نعيمية وبلدية طازجة 100%</div>
+<div class="chef-point-item"><i class="fa-solid fa-circle-check"></i> طهي أصيل على نار الحطب والفحم</div>
+<div class="chef-point-item"><i class="fa-solid fa-circle-check"></i> بهارات زعفران وهيل ومستكة حرة</div>
+<div class="chef-point-item"><i class="fa-solid fa-circle-check"></i> ضيافة وكرم بأعلى المعايير الملكية</div></div>
+<p>    <a href="#reservation" class="btn-nav-reserve" style="display: inline-block;"><br />
+      <i class="fa-regular fa-bookmark"></i> احجز مائدتك الخاصة<br />
+    </a>
+  </div>
+</section>
+<!-- 9. Section: Table Reservation -->
+<section id="reservation" class="section-reservation">
+<div class="res-card-box">
+<div class="res-card-header">
+      <span class="script-tag">الضيافة الملكية</span></p>
+<h2>حجز مائدة مسبق (Book A Table)</h2>
+<p>املأ بياناتك وسيصلك تأكيد فوري عبر الواتساب والرسائل النصية خلال دقائق معدودة</p>
+</p></div>
+<form class="res-form-grid" onsubmit="event.preventDefault(); alert('تم استلام طلب حجز مائدتك بنجاح! سيتم التواصل معك عبر الواتساب فوراً للتأكيد.');">
+<div class="res-input-field">
+        <label>الاسم بالكامل</label><br />
+        <input type="text" placeholder="الاسم ثلاثي" required>
+      </div>
+<div class="res-input-field">
+        <label>رقم الهاتف (واتساب)</label><br />
+        <input type="tel" placeholder="010XXXXXXXX" required>
+      </div>
+<div class="res-input-field">
+        <label>عدد الأفراد</label><br />
+        <select><option>شخصان (طاولة ثنائية)</option><option>3 &#8211; 4 أشخاص (عائلية)</option><option>5 &#8211; 8 أشخاص (VIP Lounge)</option><option>أكثر من 10 أشخاص (وليمة ومناسبة خاصة)</option></select>
+      </div>
+<div class="res-input-field">
+        <label>تاريخ الزيارة</label><br />
+        <input type="date" value="2026-10-18" required>
+      </div>
+<div class="res-input-field">
+        <label>الوقت المفضل</label><br />
+        <select><option>الغداء (01:00 م &#8211; 04:00 م)</option><option>القهوة العربية والمقبلات (04:00 م &#8211; 07:00 م)</option><option>العشاء الفاخر والولائم (07:30 م &#8211; 11:30 م)</option></select>
+      </div>
+<div class="res-input-field">
+        <label>الجلسة المفضلة</label><br />
+        <select><option>المجلس العربي الفاخر</option><option>الصالة العائلية الهادئة</option><option>التراس الخارجي المفتوح</option><option>جناح كبار الزوار (VIP)</option></select>
+      </div>
+<div class="res-input-field span-3">
+        <label>ملاحظات إضافية أو ترتيبات خاصة (تجهيز ذبيحة، وليمة خاصة، كيك احتفال)</label><br />
+        <textarea rows="3" placeholder="أخبرنا بأي تجهيزات تود أن نحضرها لك قبل وصولك..."></textarea>
+      </div>
+<p>      <button type="submit" class="btn-submit-reservation"><br />
+        <i class="fa-solid fa-calendar-check"></i> تأكيد الحجز المسبق<br />
+      </button><br />
+    </form>
+</p></div>
+</section>
+<!-- 10. Pitch Box for Entej Potential Clients -->
+<div class="entej-pitch-box">
+<div class="entej-pitch-text">
+<h3>تريد موقعاً إلكترونياً أو منيو رقمي لمطعمك أو كافيهك بهذا المستوى؟</h3>
+<p>
+      نحن في <strong>Entej Sites</strong> نوفر لك حلولاً برمجية وتصميمية متكاملة لقطاع الضيافة والمطاعم: منيو إلكتروني QR، نظام حجز طاولات متطور، وتطبيق ويب متكامل يربطك مباشرة بزبائنك وطلباتهم.
+    </p>
+</p></div>
+<p>  <a href="https://wa.me/201027093535?text=مرحباً%20Entej%20Sites،%20شاهدت%20نموذج%20مطعم%20قصر%20الضيافة%20وأريد%20الاستفسار%20عن%20التفاصيل%20والتكلفة" target="_blank" class="btn-pitch-whatsapp" rel="noopener"><br />
+    <i class="fa-brands fa-whatsapp"></i> تواصل معنا عبر واتساب<br />
+  </a>
+</div>
+<!-- 11. LUXURY 4-COLUMN FOOTER -->
+
+
+
+  <!-- FOOTER -->
+  <footer class="savory-footer-main">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo-title">قصر الضيافة</div>
+          <p class="footer-about-text">
+            مطعم ومجلس عربي فاخر يقدم أرقى ولائم الطهي التراثي الأصيل في أجواء ملكية مهيبة. نحفظ هوية المائدة العربية ونقدم أطباقنا بأعلى معايير الجودة والضيافة.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="menu.html">قائمة الولائم المختارة</a></li>
+            <li><a href="about.html">قصة قصر الضيافة</a></li>
+            <li><a href="reservation.html">حجز مائدة مسبق</a></li>
+            <li><a href="contact.html">الموقع والمواعيد</a></li>
+            <li><a href="admin/index.html" style="color:#c59d27;"><i class="fa-solid fa-lock"></i> لوحة التحكم (Admin)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>العنوان والتواصل</h4>
+          <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> <span>طريق الملك فهد، حي المروج، الرياض</span></p>
+          <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> <a href="tel:01027093535">01027093535</a></p>
+          <p class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/201027093535" target="_blank">واتساب مباشر: 01027093535</a></p>
+          <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <span>booking@qasr-aldiyafa.com</span></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>مواعيد العمل الرسمية</h4>
+          <p style="font-size: 14px; line-height: 1.8; color: #a1a1aa;">
+            نستقبل ضيوفنا الكرام يومياً في رحاب قصر الضيافة:<br>
+            <strong>من 12:00 ظهراً وحتى 01:30 بعد منتصف الليل</strong><br>
+            (قسم العائلات، الأفراد، والمجالس الملكية الخاصة).
+          </p>
+          <div style="margin-top: 15px;">
+            <a href="reservation.html" class="nav-order-btn" style="width: 100%; justify-content: center; display: inline-flex;">
+              <i class="fa-solid fa-calendar-check"></i> حجز مائدة مسبق
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>جميع الحقوق محفوظة © 2026 لمطعم قصر الضيافة | روائع الطهي العربي الأصيل</div>
+        <div style="color: #71717a; font-size: 13px;">فخامة الضيافة وأصالة المائدة التراثية</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/qasr-sync.js"></script>
+
+
+</body>
+</html>

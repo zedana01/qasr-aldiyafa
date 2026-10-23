@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>حجز مائدة وولائم خاصة | مطعم قصر الضيافة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <!-- HEADER -->
+  <header class="savory-site-header">
+    <div class="savory-header-inner">
+      <a href="index.html" class="savory-logo-link">
+        <span class="logo-title">قصر الضيافة</span>
+        <span class="logo-sub">مطعم ومأكولات عربية فاخرة</span>
+      </a>
+
+      <nav class="nav-links-wrap">
+        <a href="index.html" class="">الرئيسية</a>
+        <a href="menu.html" class="">قائمة الولائم</a>
+        <a href="about.html" class="">قصة الضيافة</a>
+        <a href="reservation.html" class="active">حجز طاولة</a>
+        <a href="contact.html" class="">اتصل بنا</a>
+        <a href="https://wa.me/201027093535?text=مرحباً%20مطعم%20قصر%20الضيافة،%20أود%20الاستفسار%20عن%20قائمة%20الولائم" target="_blank" class="nav-order-btn">
+          <i class="fa-brands fa-whatsapp"></i> طلب مباشر
+        </a>
+        <a href="admin/index.html" class="admin-nav-btn" title="دخول لوحة التحكم (PIN: 1234)">
+          <i class="fa-solid fa-lock"></i> لوحة الإدارة
+        </a>
+      </nav>
+
+      <button class="mobile-nav-toggle" onclick="toggleMobileMenu()" aria-label="فتح القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+    <div class="mob-drawer-header">
+      <div style="display:flex; flex-direction:column;">
+        <span style="font-size:18px; font-weight:900; color:#c59d27;">قصر الضيافة</span>
+        <span style="font-size:11px; color:#94a3b8;">مطعم ومأكولات عربية فاخرة</span>
+      </div>
+      <button class="mob-drawer-close" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Admin Quick Access Card -->
+    <div style="margin-bottom:18px;">
+      <a href="admin/index.html" style="display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg, #1e293b, #0f172a); border:1px solid #c59d27; color:#c59d27; padding:12px 14px; border-radius:10px; text-decoration:none; font-weight:800; font-size:13.5px;">
+        <span><i class="fa-solid fa-lock" style="margin-left:6px;"></i> لوحة التحكم الإدارية</span>
+        <span style="background:#c59d27; color:#0b0f12; font-size:11px; padding:2px 8px; border-radius:12px; font-weight:900;">PIN: 1234</span>
+      </a>
+    </div>
+
+    <ul class="mob-drawer-menu">
+      <li><a href="index.html" class="mob-drawer-link "><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+      <li><a href="menu.html" class="mob-drawer-link "><i class="fa-solid fa-utensils"></i> قائمة الطعام والولائم</a></li>
+      <li><a href="about.html" class="mob-drawer-link "><i class="fa-solid fa-circle-info"></i> قصة الضيافة وتراثنا</a></li>
+      <li><a href="reservation.html" class="mob-drawer-link active"><i class="fa-solid fa-calendar-check"></i> حجز طاولة وولائم</a></li>
+      <li><a href="contact.html" class="mob-drawer-link "><i class="fa-solid fa-headset"></i> اتصل بنا والموقع</a></li>
+      <li><a href="https://wa.me/201027093535" target="_blank" class="mob-drawer-link" style="color:#25d366; background:rgba(37,211,102,0.1); border-color:#25d366;"><i class="fa-brands fa-whatsapp"></i> واتساب مباشر (24/7)</a></li>
+    </ul>
+  </div>
+
+
+<!-- BANNER -->
+<section style="background: linear-gradient(rgba(11,15,18,0.85), rgba(11,15,18,0.92)), url('images/hero_slide1.jpg') center/cover no-repeat; padding: 70px 20px 60px; text-align: center; border-bottom: 2px solid #c59d27;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <span class="script-tag">تفضل بزيارتنا في رحاب الضيافة</span>
+    <h1 style="font-size: 38px; font-weight: 900; color: #ffffff; margin: 10px 0 16px;">حجز مائدة مسبق وولائم خاصة</h1>
+    <p style="font-size: 16px; color: #cbd5e1; line-height: 1.8;">احجز طاولتك أو مجلسك الملكي المفضل مسبقاً لضمان أفضل تجربة ضيافة لك ولعائلتك وضيوفك الكرام.</p>
+  </div>
+</section>
+
+<!-- RESERVATION FORM -->
+<section class="section-reservation" style="padding: 70px 20px 90px; background: #0b0f12;">
+  <div class="reservation-box" style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.02); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 40px 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <span class="script-tag">خدمة الحجز الفوري</span>
+      <h2 style="font-size: 30px; font-weight: 900; color: #ffffff; margin-top: 8px;">استمارة حجز مائدة مسبق</h2>
+      <p style="font-size: 14px; color: #a1a1aa; max-width: 550px; margin: 10px auto 0;">يرجى تزويدنا بتفاصيل الحجز وسيتواصل معكم فريق الاستقبال لتأكيد الحجز فورياً.</p>
+    </div>
+
+    <form onsubmit="handleReservationSubmit(event)">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;">
+        <div>
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">الاسم بالكامل *</label>
+          <input type="text" id="resName" required placeholder="مثال: عبدالرحمن الشهري" style="width:100%; padding:13px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">رقم الجوال *</label>
+          <input type="tel" id="resPhone" required placeholder="مثال: 0551234567" style="width:100%; padding:13px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 18px;">
+        <div>
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">عدد الأفراد *</label>
+          <select id="resGuests" style="width:100%; padding:13px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;">
+            <option>شخصين</option>
+            <option>3 - 4 أشخاص</option>
+            <option>5 - 8 أشخاص</option>
+            <option>وليمة عائلية (10 - 20 شخصاً)</option>
+            <option>مجلس ملكي خاص (أكثر من 20 شخصاً)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">تاريخ الزيارة *</label>
+          <input type="date" id="resDate" required style="width:100%; padding:12px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">وقت الوصول المفضل *</label>
+          <select id="resTime" style="width:100%; padding:13px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;">
+            <option>01:00 ظهراً (غداء)</option>
+            <option>02:30 ظهراً (غداء)</option>
+            <option>04:00 عصراً</option>
+            <option>08:00 مساءً (عشاء)</option>
+            <option>09:30 مساءً (عشاء)</option>
+            <option>11:00 مساءً (سهرة)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label style="display: block; font-size: 13.5px; font-weight: 800; color: #e2e8f0; margin-bottom: 6px;">طلبات خاصة أو أصناف مفضلة (اختياري)</label>
+        <textarea id="resNotes" rows="3" placeholder="مثال: تجهيز خروف مندي كامل، أو طاولة vip عائلية مع بارتشن..." style="width:100%; padding:13px; background:#181e24; border:1px solid rgba(212,175,55,0.3); border-radius:8px; color:#fff; font-family:inherit; outline:none;"></textarea>
+      </div>
+
+      <button type="submit" class="nav-order-btn" style="width: 100%; justify-content: center; padding: 15px; font-size: 16px;">
+        <i class="fa-solid fa-calendar-check"></i> تأكيد الحجز وإرسال الطلب
+      </button>
+    </form>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="savory-footer-main">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo-title">قصر الضيافة</div>
+          <p class="footer-about-text">
+            مطعم ومجلس عربي فاخر يقدم أرقى ولائم الطهي التراثي الأصيل في أجواء ملكية مهيبة. نحفظ هوية المائدة العربية ونقدم أطباقنا بأعلى معايير الجودة والضيافة.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="menu.html">قائمة الولائم المختارة</a></li>
+            <li><a href="about.html">قصة قصر الضيافة</a></li>
+            <li><a href="reservation.html">حجز مائدة مسبق</a></li>
+            <li><a href="contact.html">الموقع والمواعيد</a></li>
+            <li><a href="admin/index.html" style="color:#c59d27;"><i class="fa-solid fa-lock"></i> لوحة التحكم (Admin)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>العنوان والتواصل</h4>
+          <p class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> <span>طريق الملك فهد، حي المروج، الرياض</span></p>
+          <p class="footer-contact-item"><i class="fa-solid fa-phone"></i> <a href="tel:01027093535">01027093535</a></p>
+          <p class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/201027093535" target="_blank">واتساب مباشر: 01027093535</a></p>
+          <p class="footer-contact-item"><i class="fa-solid fa-envelope"></i> <span>booking@qasr-aldiyafa.com</span></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>مواعيد العمل الرسمية</h4>
+          <p style="font-size: 14px; line-height: 1.8; color: #a1a1aa;">
+            نستقبل ضيوفنا الكرام يومياً في رحاب قصر الضيافة:<br>
+            <strong>من 12:00 ظهراً وحتى 01:30 بعد منتصف الليل</strong><br>
+            (قسم العائلات، الأفراد، والمجالس الملكية الخاصة).
+          </p>
+          <div style="margin-top: 15px;">
+            <a href="reservation.html" class="nav-order-btn" style="width: 100%; justify-content: center; display: inline-flex;">
+              <i class="fa-solid fa-calendar-check"></i> حجز مائدة مسبق
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>جميع الحقوق محفوظة © 2026 لمطعم قصر الضيافة | روائع الطهي العربي الأصيل</div>
+        <div style="color: #71717a; font-size: 13px;">فخامة الضيافة وأصالة المائدة التراثية</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/qasr-sync.js"></script>
+
+
+<script>
+function handleReservationSubmit(e) {
+  e.preventDefault();
+  var name = document.getElementById('resName').value.trim();
+  var phone = document.getElementById('resPhone').value.trim();
+  var guests = document.getElementById('resGuests').value;
+  var date = document.getElementById('resDate').value;
+  var time = document.getElementById('resTime').value;
+  var notes = document.getElementById('resNotes').value.trim();
+
+  try {
+    var raw = localStorage.getItem('qasr_reservations') || '[]';
+    var resList = JSON.parse(raw);
+    resList.unshift({
+      id: Date.now(),
+      name: name,
+      phone: phone,
+      guests: guests,
+      date: date,
+      time: time,
+      notes: notes,
+      created: new Date().toLocaleDateString('ar-SA')
+    });
+    localStorage.setItem('qasr_reservations', JSON.stringify(resList));
+  } catch(err) {}
+
+  var waMsg = encodeURIComponent("مرحباً مطعم قصر الضيافة، أود حجز مائدة مسبق:\nالاسم: " + name + "\nالجوال: " + phone + "\nعدد الضيوف: " + guests + "\nالتاريخ: " + date + "\nالوقت: " + time + "\nالملاحظات: " + notes);
+  window.open("https://wa.me/201027093535?text=" + waMsg, "_blank");
+  alert("تم استلام طلب الحجز بنجاح! شكراً لك، وجارٍ توجيهك إلى واتساب المطعم للتأكيد النهائي.");
+}
+</script>
+
+</body>
+</html>
